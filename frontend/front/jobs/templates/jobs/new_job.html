@@ -1,0 +1,78 @@
+ 
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Job</title>
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/material-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Login-Center.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/MUSA_panel-table.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/MUSA_panel-table1.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/jobs.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/new_job.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/dataTables.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/toastr.min.css' %}">
+    <link href="{% static 'assets/css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet" media="screen">
+
+</head>
+<body>
+{% include "menu.html" %}
+<input type="text" id="deviceClassData" value="{{ deviceClass }}" style="display: none;">
+<input type="text" id="localisationData" value="{{ localisation }}" style="display: none;">
+<input type="text" id="groupData" value="{{ group }}" style="display: none;">
+    <hr>
+    <div>
+        <div class="col-md-12 col-md-offset-0">
+            <div class="row">
+                <div class="col-md-12">
+                    <div data-aos="zoom-out-up" data-aos-duration="150">
+                        <ul class="nav nav-tabs">
+                        
+                        	<li class="active" data-aos="fade-right"><a href="#tab-1" role="tab" data-toggle="tab">Parser </a></li>
+                        	<li data-aos="fade-right"><a href="#tab-2" role="tab" data-toggle="tab">Sender </a></li>
+                            <li data-aos="fade-right"><a href="#tab-3" role="tab" data-toggle="tab">Differ precheck</a></li>
+                            <li data-aos="fade-right"><a href="#tab-4" role="tab" data-toggle="tab">Differ postcheck</a></li>
+                            <li data-aos="fade-right"><a href="#tab-5" role="tab" data-toggle="tab">Loader </a></li>
+                            
+                        </ul>
+                        <br></br>
+                        {% include "configurationParser.html" %}
+                            
+                        {% include "configurationSender.html" %}
+                        
+                        {% include "differPrecheck.html" %}
+                        
+                        {% include "differPostcheck.html" %}
+                        
+                        {% include "imageLoader.html" %}
+
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/bs-animation.js' %}"></script>
+    <script src="{% static 'assets/js/aos.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/jquery/jquery-1.8.3.min.js' %}" charset="UTF-8"></script>
+    <script type="text/javascript" src="{% static 'assets/js/jquery.dataTables.min.js' %}" charset="UTF-8"></script>
+    <script type="text/javascript" src="{% static 'assets/bootstrap/js/bootstrap/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/bootstrap-datetimepicker.js' %}" charset="UTF-8"></script>
+    <script type="text/javascript" src="{% static 'assets/js/locales/bootstrap-datetimepicker.fr.js' %}" charset="UTF-8"></script>
+    <script type="text/javascript" src="{% static 'assets/js/new_job.js' %}"></script>
+    <script src="{% static 'assets/js/toastr.min.js' %}"></script>
+    <script src="{% static 'assets/js/jobs.js' %}"></script>
+    <script src="{% static 'assets/js/new_job.js' %}"></script>
+
+</body>
+{% include "footer.html" %}
+</html>

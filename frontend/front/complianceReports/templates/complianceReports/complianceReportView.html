@@ -1,0 +1,154 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<title>Compliance Repports</title>
+
+{% include "header.html" %}
+
+</head>
+<body>
+
+{% include "menu.html" %}
+<hr>
+<h2 class="text-center" style="color: #0086b3"><B>{{jsondata.global_compliance.name}}</B></h2>
+{% for element in jsondata.elements %}
+{% for job in element.element_information.job_templates %}
+<div class="panel-body">
+                <table class="table table-striped table-bordered table-list display" id="dataTableId" cellspacing="0" width="100%">
+                  <thead>
+                    <tr>
+                    	<td>Name: {{job.name}}</td>
+                    </tr> 
+                  </thead>
+                  <tbody>
+                          <tr>
+                            <td>checks: 
+                    <table class="table table-striped table-bordered table-list display" cellspacing="0">
+                    {% for check in element.element_information.checks %}
+                    <tr>
+                    	<th><a href="#{{check.id}}_check_details_Modal" data-toggle="modal">{{check.name}}</a></th>
+                    	
+                    	<td>
+                    	<div class="x_content2">
+                            <canvas id="comp_{{check.id}}" width="150" height="25"></canvas>
+                        </div>
+                        <div id="mtit" class="modal fade" role="dialog" tabindex="-1">
+                        <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                       <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title col col-xs-6">Rules</h4></div>
+                        
+                        <h3>{{check.rules}}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" role="dialog" tabindex="-1" id="{{check.id}}_check_details_Modal">
+                        <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title col col-xs-6">Rules</h4></div>
+                        <div>
+                        <table class="table table-striped table-bordered table-list display" cellspacing="0">
+                    <tr>
+                        <th></th>
+                     	<th>Operator</th>
+                        <th>Type</th>
+                        <th>Depends On</th>
+                        <th>Value</th>
+                    </tr>
+                            {% for rule in check.rule_list %}
+                          <tr>
+                            <td>{{rule.id}}</td>
+                            <td>{{rule.operator}}</td>
+                            <td>{{rule.type}}</td>
+                            <td>{{rule.depend_on}}</td>
+                            <td>{{rule.value}}</td>
+                          </tr>
+                        {% endfor %}
+          
+                       </table>
+                       </div>
+                        </div>
+                        </div>
+                        </div>
+                            <script>
+                            $(document).ready(function() {
+                            var canvas = document.getElementById("comp_{{check.id}}");
+                            var ctx = canvas.getContext('2d');
+                            var myChart = new Chart(ctx, {
+                              type: 'pie',
+                              data: {
+                                labels: ["FAILED", "SUCCESSFUL"],
+                                datasets: [{
+                                  backgroundColor: [
+                                    "red",
+                                    "green"
+                                  ],
+                                  data: [{{check.failed_result}}, {{check.successful_result}}]
+                                }]
+                              }
+                            });
+                            canvas.onclick = function(evt) {
+                            	var device_list = [];
+                                var activePoints = myChart.getElementsAtEvent(evt);
+                                if (activePoints[0]) {
+                                  var chartData = activePoints[0]['_chart'].config.data;
+                                  var idx = activePoints[0]['_index'];
+
+                                  var label = chartData.labels[idx];
+                                  var value = chartData.datasets[0].data[idx];
+                                  if(label == 'FAILED'){
+                                	  alertify.alert('<h2>Failed devices</h2> <br> <ul>{% for device in check.failed_result_list %} <li style=color:red;>{{device}}</li>{% endfor %}</ul> ');
+                                  };
+                                  if(label == 'SUCCESSFUL'){
+                                	  alertify.alert('<h2>Successful devices</h2> <br> <ul>{% for device in check.successful_result_list %} <li style=color:green;>{{device}}</li>{% endfor %}</ul> ');
+                                  }
+                                  
+
+                                  //document.getElementById("comp_{{check.id}}_popup").innerHTML = "Hello JavaScript!";
+                                  
+                                }
+                              };
+                              
+                            
+                            }
+                            
+                            )
+
+</script>
+                            
+                            </td>
+                    </tr>
+                    {% endfor %}
+                 
+          
+                    
+                </table>
+                            
+                            </td>
+                          </tr>
+  </tbody>
+          
+                    
+                </table>
+          
+              </div>
+{% endfor %}
+{% endfor %}
+
+
+
+
+<script src="{% static 'assets/js/chart.bundle.min.js' %}"></script>
+<script src="{% static 'assets/dashboards/vendors/raphael/raphael.min.js' %}"></script>
+<script src="{% static 'assets/dashboards/vendors/morris.js/morris.min.js' %}"></script>
+<script src="{% static 'assets/js/alertify.js' %}"></script>
+</body>
+{% include "footer.html" %}
+</html>

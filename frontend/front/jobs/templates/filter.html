@@ -1,0 +1,19 @@
+
+	<select>
+		<option value="1" selected>--choose from here--</option>
+		<optgroup label="Localisations">
+			{% for obj in localisation.locations %}                                       
+        	<option id="{{obj.id}}" value="localisationFilter">{{obj.name}}</option>
+        	{% endfor %}			
+		</optgroup>
+		<optgroup label="Device Class">
+			{% for obj in deviceClass.deviceClasses %}
+    		<option id="{{obj.id}}">{{obj.name}}</option>
+        	{% endfor %}
+		</optgroup>
+		<optgroup label="Group">
+			{% for obj in group.groups %}                                       
+        	<option id="{{obj.id}}">{{obj.name}}</option>
+        	{% endfor %} 
+		</optgroup>
+	</select>

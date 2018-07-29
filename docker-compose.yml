@@ -1,0 +1,199 @@
+version: '3'
+services:
+  postgres:
+    build: ./postgres
+    image: optima_postgresql
+    environment:
+     - POSTGRES_DB=optimadb
+     - POSTGRES_USER=optima
+     - POSTGRES_PASSWORD=optima
+    networks:
+      optima_net:
+        ipv4_address: 172.18.0.3
+    restart: unless-stopped
+
+  rabbitmq:
+    image: rabbitmq:3.7.4-rc.4-management
+    ports:
+     - "8082:15672"
+    environment:
+     - RABBITMQ_DEFAULT_USER=optima
+     - RABBITMQ_DEFAULT_PASS=optima
+    networks:
+      optima_net:
+        ipv4_address: 172.18.0.5
+    restart: unless-stopped
+
+  back:
+    build: ./backend
+    image: optima-backend-image
+    ports:
+     - "5000:5000"
+    volumes:
+     - ../optima:/opt/optima
+    networks:
+      optima_net:
+        ipv4_address: 172.18.0.2
+    command: /bin/bash -c "rm -rf /opt/optima/backend/back/migrations; /opt/backenv/bin/python /opt/optima/backend/back/manage.py db init; /opt/backenv/bin/python /opt/optima/backend/back/manage.py db migrate; /opt/backenv/bin/python /opt/optima/backend/back/manage.py db upgrade; /opt/backenv/bin/python /opt/optima/backend/back/app.py"
+    restart: unless-stopped
+  
+  front:
+    build: ./frontend
+    image: optima-front-image
+    ports:
+     - "80:8000"
+    volumes:
+     - ../optima:/opt/optima
+    networks:
+      optima_net:
+        ipv4_address: 172.18.0.4
+    command: /opt/frontenv/bin/python /opt/optima/frontend/front/manage.py runserver 0.0.0.0:8000
+    restart: unless-stopped
+  
+  elasticsearch:
+    image: elasticsearch
+    ports:
+     - 9200:9200
+    networks:
+      optima_net:
+        ipv4_address: 172.18.0.8
+    restart: unless-stopped
+  
+  logstash:
+    build: ./logstash
+    image: my-logstash
+    ports:
+     - 10514:10514
+    volumes:
+     - ./logstash/logstash.conf:/etc/logstash/conf.d/logstash.conf
+     - /dev/log:/dev/log
+    networks:
+      optima_net:
+        ipv4_address: 172.18.0.15
+    restart: unless-stopped
+
+  kibana:
+    build: ./kibana
+    image: optima-kibana
+    ports:
+     - 8081:5601
+    networks:
+      optima_net:
+        ipv4_address: 172.18.0.9
+    restart: unless-stopped
+        
+  abstraction_layer:
+    image: consumer
+    volumes:
+     - ../optima:/opt/optima
+    networks:
+      optima_net:
+        ipv4_address: 172.18.0.11
+    command: bash -c "runuser -l celery -c 'cd /opt/optima/abstraction-layer/abstraction_layer && /opt/consumer_env/bin/celery -A abstraction_layer worker --loglevel=DEBUG -n AbstractionLayer --logfile=/opt/consumer.log'"
+    restart: unless-stopped
+  
+  configuration-parser:
+    image: agent
+    volumes:
+     - ../optima:/opt/optima
+     - /dev/log:/dev/log
+    networks:
+      optima_net:
+        ipv4_address: 172.18.0.13
+    command: bash -c "runuser -l celery -c 'cd /opt/optima/configuration-parser/AutomationTools/Process && /opt/agent-env/bin/celery -A ConfigurationParser worker --loglevel=info -n configuration_parser --logfile=/opt/agent.log  --concurrency=10'"
+    restart: unless-stopped
+  
+  configuration-sender:
+    image: agent
+    volumes:
+     - ../optima:/opt/optima
+     - /dev/log:/dev/log
+    networks:
+      optima_net:
+        ipv4_address: 172.18.0.14
+    command: bash -c "runuser -l celery -c 'cd /opt/optima/configuration-sender/AutomationTools/Process && /opt/agent-env/bin/celery -A ConfigurationSender worker --loglevel=info -n configuration_sender --logfile=/opt/agent.log  --concurrency=10'"
+    restart: unless-stopped
+  
+  configuration-differ-precheck:
+    image: agent
+    volumes:
+     - ../optima:/opt/optima
+     - /dev/log:/dev/log
+    networks:
+      optima_net:
+        ipv4_address: 172.18.0.16
+    command: bash -c "runuser -l celery -c 'cd /opt/optima/configuration-differ-precheck/AutomationTools/Process && /opt/agent-env/bin/celery -A ConfigurationDifferPrecheck worker --loglevel=info -n configuration_differ_precheck --logfile=/opt/agent.log  --concurrency=10'"
+    restart: unless-stopped
+  
+  configuration-differ-postcheck:
+    image: agent
+    volumes:
+     - ../optima:/opt/optima
+     - /dev/log:/dev/log
+    networks:
+      optima_net:
+        ipv4_address: 172.18.0.17
+    command: bash -c "runuser -l celery -c 'cd /opt/optima/configuration-differ-postcheck/AutomationTools/Process && /opt/agent-env/bin/celery -A ConfigurationDifferPostcheck worker --loglevel=info -n configuration_differ_postcheck --logfile=/opt/agent.log  --concurrency=10'"
+    restart: unless-stopped
+ 
+  configuration-image-loader:
+    image: agent
+    volumes:
+     - ../optima:/opt/optima
+     - /dev/log:/dev/log
+    networks:
+      optima_net:
+        ipv4_address: 172.18.0.18
+    command: bash -c "runuser -l celery -c 'cd /opt/optima/configuration-image-loader/AutomationTools/Process && /opt/agent-env/bin/celery -A ConfigurationImageLoader worker --loglevel=info -n configuration_image_loader --logfile=/opt/agent.log  --concurrency=10'"
+    restart: unless-stopped
+  
+  job_manager:
+    image: consumer
+    volumes:
+     - ../optima:/opt/optima
+     - /dev/log:/dev/log
+    networks:
+      optima_net:
+        ipv4_address: 172.18.0.12
+    command: bash -c "runuser -l celery -c 'cd /opt/optima/job_manager/job_manager && /opt/consumer_env/bin/celery -A job_manager worker --concurrency=1  --loglevel=INFO --logfile=/opt/consumer.log'"
+    restart: unless-stopped
+  
+  notifications:
+    image: consumer
+    volumes:
+     - ../optima:/opt/optima
+     - /dev/log:/dev/log
+    networks:
+      optima_net:
+        ipv4_address: 172.18.0.19
+    command: bash -c "runuser -l celery -c 'cd /opt/optima/notification/notification && /opt/consumer_env/bin/celery -A notification_consumer worker --concurrency=1  --loglevel=INFO --logfile=/opt/consumer.log'"
+    restart: unless-stopped
+  
+  orchestrator:
+    image: consumer
+    volumes:
+     - ../optima:/opt/optima
+     - /dev/log:/dev/log
+    networks:
+      optima_net:
+        ipv4_address: 172.18.0.20
+    command: bash -c "runuser -l celery -c 'cd /opt/optima/orchestrator/orchestrator && /opt/consumer_env/bin/celery -A orchestrator worker --concurrency=1  --loglevel=INFO --logfile=/opt/consumer.log'"
+    restart: unless-stopped
+  
+  portainer:
+    image: portainer/portainer
+    ports:
+      - "8080:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      optima_net:
+        ipv4_address: 172.18.0.6
+    restart: unless-stopped
+        
+networks:
+  optima_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/24

@@ -1,0 +1,49 @@
+<nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+        {% load staticfiles %} 
+        
+            <div class="navbar-header"><a href="/index"><img src= "{% static 'assets/img/white-logo.png' %}" width="90" height="45" /></a>
+                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+            </div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav navbar-right">
+                	<li role="presentation"><a href="/index">Home </a></li>
+                    <li role="presentation"><a href="/dashboards">Dashboard </a></li>
+                    <li role="presentation"><a href="/devices">Devices </a></li>
+                    <li role="presentation"><a href="/jobs">Jobs </a></li>
+                    <li role="presentation"><a href="/workflow">Workflow </a></li>
+                    <li role="presentation"><a href="/notifications">Notifications </a></li>
+                    <li role="presentation"><a href="/workflowReports">Workflow Reports </a></li>
+
+                    <li role="presentation"><a href="/reports">Job Reports </a></li>
+                    <li role="presentation"><a href="/complianceReports">Compliance Reports </a></li>
+                    
+                    <li role="presentation"><a></a></li>
+                    <li role="presentation"><a></a></li>
+                    <li role="presentation"><a></a></li>
+                    <li role="presentation"><a></a></li>
+                    <li role="presentation"><a></a></li>
+                   
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#"><span class="glyphicon glyphicon-info-sign"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            
+                            <li class="dropdown-items" role="presentation" ><a href="{% static 'assets/guides/optima_user_guide.pdf' %}" download>User Guide </a></li>
+                            <li class="dropdown-items" role="presentation" ><a href="{% static 'assets/guides/optima_install_guide.pdf' %}" download>Installation Guide </a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">admin<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            
+                            <li class="dropdown-items" role="presentation"><a href="#">About </a></li>
+                        </ul>
+                    </li>
+                   
+                    <li role="presentation">                 
+                        <form method="POST" action="{% url 'logout' %}"> {% csrf_token %}
+                        <button class="btn btn-primary" name="logout" value="true" style="margin-top:5px;"><i class="fa fa-sign-out"></i></button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>

@@ -1,0 +1,92 @@
+{% load staticfiles %}
+{% load users_tags %}
+
+<head>
+    <title>{% if obj %}Edit{% else %}Create{% endif %} Role</title>
+
+{% include "header.html" %}
+    <link rel="stylesheet" href="{% static 'assets/css/fSelect.css' %}">
+    <script src="{% static 'assets/js/fSelect.js' %}"></script>
+</head>
+<body>
+
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.left-color {
+    background-color: #f4f3f5;
+}
+.right-color {
+    background-color: white;
+}
+</style>
+
+
+{% include "menu.html" %}
+
+{% include "sidebar.html" with active="role" %}
+
+  <div class="text-center">
+    <div class="col col-xs-10">
+
+  
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-center text-info">{% if obj %}Edit{% else %}Create{% endif %} Role</h2></div>
+            <br />
+            <h6 class="text-center" style="color: red">{{message}}</h6>
+        <div class="col-md-6 col-md-offset-3 col-sm-6 col-xs-12 site-form">
+            <form id="my-form" method="POST"> {% csrf_token %}
+            <table>
+                    <tr>
+                    <td class="left-color"><label class="control-label col col-xs-6 text-left">Name</label></td>
+                    <td class="right-color">
+                        {% if action == 'add' %}
+                            <input class="right-color form-control" type="text" name="name" required >
+                        {% else %}
+                            {{ obj.name }}
+                        {% endif %}
+                    </td>
+                    </tr>
+                    <tr>
+                        <td class="left-color"><label class="control-label col col-xs-6 text-left">Permissions</label></td>
+                        <td class="right-color">
+                            {{ role }}
+
+                            {% group_permission all_permissions.permissions as perms_by_object %}
+                            <input type="hidden" id="selected_values" name="selected_values" value="{{ permissions_id|join:',' }}">
+                            <select class="multiselectsearch" multiple="multiple">
+                                {% for obj, perms in perms_by_object.items %}
+                                <optgroup label="{{ obj }}">
+                                    {% for perm in perms %}
+                                    <option value="{{ perm.id }}" {% if perm.id in permissions_id %}selected {% endif %}>{{ perm.name }}</option>
+                                    {% endfor %}
+                                </optgroup>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                </table> <br />
+                <button class="btn btn-primary btn-lg text-right" type="submit" name="signup" value="true">SEND </button>
+            </form>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    </div></div>
+<script type="application/javascript">
+    $('.multiselectsearch').fSelect();
+</script>
+</body>
+
+
+{% include "footer.html" %}

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/fonts/material-icons.css">
+    <link rel="stylesheet" href="{% static "assets/css/aos.css" %}">
+    <link rel="stylesheet" href="assets/css/Login-Center.css">
+    <link rel="stylesheet" href="assets/css/MUSA_panel-table.css">
+    <link rel="stylesheet" href="assets/css/MUSA_panel-table1.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header"><a class="navbar-brand navbar-link" href="index.html">Logo </a>
+                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+            </div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li role="presentation"><a href="index.html">Dashboard </a></li>
+                    <li role="presentation"><a href="devices.html">Devices </a></li>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">Jobs <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation"><a href="jobs.html">Jobs </a></li>
+                            <li role="presentation"><a href="mop.html">MOP </a></li>
+                        </ul>
+                    </li>
+                    <li role="presentation"><a href="notifications.html">Notifications </a></li>
+                    <li role="presentation"><a href="#">Reporting </a></li>
+                    <li class="disabled" role="presentation">
+                        <a href="#"> </a>
+                    </li>
+                    <li class="disabled" role="presentation">
+                        <a href="#"> </a>
+                    </li>
+                    <li class="disabled" role="presentation">
+                        <a href="#"> </a>
+                    </li>
+                    <li class="disabled" role="presentation">
+                        <a href="#"> </a>
+                    </li>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">Username <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation"><a href="profil.html">Profil </a></li>
+                            <li role="presentation"><a href="#">About </a></li>
+                        </ul>
+                    </li>
+                    <li class="disabled" role="presentation">
+                        <a href="#"> </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#"> <i class="fa fa-gears"></i></a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#"> <i class="fa fa-sign-out"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab-1" role="tab" data-toggle="tab">Overview </a></li>
+            <li><a href="#tab-2" role="tab" data-toggle="tab">Interfaces </a></li>
+            <li><a href="#tab-3" role="tab" data-toggle="tab">Processors </a></li>
+            <li><a href="#tab-4" role="tab" data-toggle="tab">Fans </a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" role="tabpanel" id="tab-1">
+                <hr>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <header></header>
+                        </div>
+                        <div class="col-md-11 col-md-offset-1">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <ul class="list-group">
+                                        <li class="list-group-item"><span><strong>Device Title : router name</strong></span></li>
+                                        <li class="list-group-item"><span><strong>Uptime : 4h 58 min</strong></span></li>
+                                        <li class="list-group-item"><span><strong>First seen : 01/27/2017</strong></span></li>
+                                        <li class="list-group-item"><span><strong>Last change : 02/23/2017</strong></span></li>
+                                        <li class="list-group-item"><span><strong>Model Time : 02/23/2017</strong></span></li>
+                                        <li class="list-group-item"><span><strong>Locking : Unlocked</strong></span></li>
+                                        <li class="list-group-item"><span><strong>Memory/SWAP : 8GB/4GB</strong></span></li>
+                                    </ul>
+                                    <ul class="list-group">
+                                        <li class="list-group-item"><span><strong>System : OS</strong></span></li>
+                                        <li class="list-group-item"><span><strong>Groups : None</strong></span></li>
+                                        <li class="list-group-item"><span><strong>Location : Name</strong></span></li>
+                                        <li class="list-group-item"><span><strong>Links : None</strong></span></li>
+                                        <li class="list-group-item"><span><strong>Comment : </strong></span>
+                                            <input type="text">
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6 col-md-offset-1">
+                                    <form class="bootstrap-form-with-validation">
+                                        <div class="form-group">
+                                            <label class="control-label" for="text-input"><strong>Device TItle:</strong></label>
+                                            <input class="form-control" type="text" name="text-input" value="router name" id="text-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="password-input"><strong>Use Enable Password :</strong></label>
+                                            <select class="form-control">
+                                                <option value="">Production</option>
+                                                <option value="">Pre Production</option>
+                                                <option value="">Test</option>
+                                                <option value="">Maintenance</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="password-input"><strong>Pririty :</strong></label>
+                                            <input class="form-control" type="text" name="text-input" id="text-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="password-input"><strong>TAG :</strong></label>
+                                            <input class="form-control" type="text" name="text-input" id="text-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="password-input"><strong>Serial Number:</strong></label>
+                                            <input class="form-control" type="text" name="text-input" id="text-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <button class="btn btn-primary" type="submit">Save </button>
+                                            <button class="btn btn-primary" type="submit">Cancel </button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-6 col-md-offset-1">
+                                    <ul class="list-group">
+                                        <li class="list-group-item"><span><strong>SNMP SysNAME :</strong></span></li>
+                                        <li class="list-group-item"><span><strong>SNMP Location :</strong></span></li>
+                                        <li class="list-group-item"><span><strong>SNMP Contact :</strong></span></li>
+                                        <li class="list-group-item"><span><strong>SNMP Description :</strong></span></li>
+                                        <li class="list-group-item"><span><strong>SNMP Community :</strong></span></li>
+                                        <li class="list-group-item"><span><strong>SNMP Version :</strong></span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" role="tabpanel" id="tab-2">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Interface </th>
+                                <th>IP Address</th>
+                                <th>Status </th>
+                                <th>Description </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Serial 1/0</td>
+                                <td>192.168.2.5 </td>
+                                <td>Up </td>
+                                <td> </td>
+                            </tr>
+                            <tr>
+                                <td>L12 </td>
+                                <td>192.168.2.2 </td>
+                                <td>Down </td>
+                                <td> </td>
+                            </tr>
+                            <tr>
+                                <td>Cell 1</td>
+                                <td>127.0.0.1 </td>
+                                <td>Up </td>
+                                <td> </td>
+                            </tr>
+                            <tr>
+                                <td>Fastethernet 1/0</td>
+                                <td>192.168.1.1 </td>
+                                <td>up </td>
+                                <td> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="tab-pane" role="tabpanel" id="tab-3">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Manufactuer </th>
+                                <th>Model </th>
+                                <th>Speed </th>
+                                <th>Cores </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Cisco </td>
+                                <td>RSP4 </td>
+                                <td>speed </td>
+                                <td>4 </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="tab-pane" role="tabpanel" id="tab-4"></div>
+        </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-animation.js"></script>
+    <script src="{% static "assets/js/aos.js" %}"></script>
+</body>
+
+</html>

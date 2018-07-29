@@ -1,0 +1,35 @@
+.td1 {
+display : block;
+} 
+span[class*="dot-status"] {
+    margin-left: 23%;
+    margin-top: -30px;
+    overflow: hidden;
+}
+.dot-status-failed:before {
+    content:"\25cf";
+    font-size: 5em;
+    color: rgb(204, 0, 0);
+}
+.dot-status-new:before {
+    content:"\25cf";
+    font-size: 5em;
+    color: rgb(118, 132, 129);
+}
+.dot-status-ongoing:before {
+    content:"\25cf";
+    font-size: 5em;
+    color: rgb(52, 73, 94);
+}
+.dot-status-queued:before {
+    content:"\25cf";
+    font-size: 5em;
+    color: rgb(0, 89, 255);
+}
+.dot-status-successful:before {
+    content:"\25cf";
+    font-size: 5em;
+    color: rgb(41, 199, 69);
+}
+
+

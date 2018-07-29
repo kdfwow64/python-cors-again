@@ -1,0 +1,218 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<title>New Compliance Reports</title>
+
+{% include "header.html" %}
+<link rel="stylesheet" href="{% static 'assets/css/jobs.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/new_job.css' %}">
+</head>
+<body>
+{% include "menu.html" %}   	
+<hr>
+						<div class="tab-content">
+                        	<div class="tab-pane active" role="tabpanel" id="tab-1">
+                                <div class="col-lg-7 col-md-7 col-md-offset-2">
+                                    <form class="bootstrap-form-with-validation jobForm" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                                        <h2 class="text-center" style="color: #0086b3"><B>New Compliance Report</B></h2>                                        
+                                        <legend style="text-align:left; color:#008cba"><B>Global Data</B></legend>
+                                        <table> 
+                                        <tr>
+                                        <div class="form-group">
+                                            <td><label class="control-label" for="text-input">Compliance Name :</label></td>
+                                            <td align="center"><input  class="form-control" type="text" name="global_name"></td>
+                                        </div>
+                                        </tr>
+                                        <tr>
+                                        <div>
+                                        
+                                            <td><label class="control-label" for="text-input">Description :</label></td>
+                                            <td align="center"><input  class="form-control" type="text" name="global_description" ></td>
+                                        </div>
+                                        </tr>
+                                        </table>
+                                         <legend style="text-align: left; color: #008cba" ><B> Credentials</B></legend>
+                                        <input type="radio" name="use_device_credentials" id="compliance_report_use_device_credentials" value="true"  />
+                                        <label> Use device credentials</label><br> 
+
+                                        <input type="radio" name="use_device_credentials" id="compliance_report_provide_credentials" value="false" />
+                                        <label> Provide credentials</label><br> 
+    
+                                    <div id="compliance_report_use_device_credentials-div" class="pass" hidden="True">
+                                    			<table>
+                                    			<tr>
+                                    			<div class="form-group">
+                                                <td><label class="control-label" for="text-input">Login :</label></td>
+                                                <td align="center"><input class="form-control" type="text" name="global_login"></td>
+                                                </div>
+                                                </tr>
+                                                <tr>
+                                                <div class="form-group">
+                                                <td><label class="control-label" for="password-input">Password :</label></td>
+                                                <td align="center"><input class="form-control" type="password" name="global_password"></td>
+                                                </div>
+                                                </tr>
+                                                </table>
+                                            <label class="control-label" for="password-input">Use Enable Password :</label> <br> 
+                                            <input type="radio" name="use_enable_password" id="compliance_report_use_enable_password_true" value="true">
+                                            <label><B>Yes</B></label><br> 
+                                            <input type="radio" name="use_enable_password" id="compliance_report_use_enable_password_false" value="false">
+                                            <label><B>No</B></label><br>
+                                        <div id="compliance_report_use_enable_password_true-div" class="pass" hidden="True">
+                                        <table>
+                                        <tr>
+                                            <td><label class="control-label" for="text-input">password</label></td>
+                                            <td align="center"><input class="form-control" type="password" name="enable_password"></td>
+                                        </tr>
+                                        </table>
+                                        </div>
+                                    </div>
+                                <br>
+                                        <fieldset> 
+                                        <legend style="text-align: left; color: #008cba"><B> Hosts</B></legend>
+                                        <input type="radio" name="hostsType" id="compliance_report_hostList" value="hostList"  />
+                                        <label>load a host file</label><br> 
+                                        <input type="radio" name="hostsType" id="compliance_report_hostFilter" value="hostFilter" />
+                                        <label>Choose hosts from an existing data base</label><br> 
+   
+                                    <div id="compliance_report_hostList-div" class="form-group" hidden="True">
+                                                <label class="control-label" for="file-input">Host File :</label>
+                                                <input type="file" name="hostFile">
+                                    </div>
+                                    
+                                     <div id="compliance_report_hostFilter-div" class="choosenDevice" hidden="True">
+                                      <!--
+                                      <table class="choice-list2">
+                                      <tr><td><select  class="form-control" id="choosen_category" style="height:50px; width:200px; text-align:center;" name="choosen_category" ><option value="0" selected>--choose from here--</option><option value="40" >localisation</option><br></br><option value="41">device class</option><br></br><option value="42">group</option></select></td><td><select class="form-control" id="choices" name="choices" style="height:50px; width:200px; text-align:center;" ><option>--choose a device class--</option><option>choice1</option><option>choice2</option><option>choice3</option></select></td><td><input type="text" name="filter" style="height:50px; width:200px; text-align:center;" /></td></tr>'
+                                      </table>
+                                      
+                                     <a href="#" title="" class="add-choice2"><button type="button" class="btn btn-sm btn-primary btn-create" href="#">Add choice</button></a>
+                                    
+                                    -->
+                                     <table>
+                                     <input type="hidden" name="hostFilter" value="True" />
+                                     <tr>  
+                                     <td>
+                                     <Select name ="element" id="devices_compliance_report" class="select">
+                                     <option value="all_compliance_report" selected>all</option>
+  								     <option value="location_compliance_report">locations</option>
+  									 <option value="group_compliance_report">group</option>
+   									 <option value="deviceClass_compliance_report">device class</option>
+									 </Select>
+									 </td> 
+									 <td>
+									 <div id="all_compliance_report" class="devices_compliance_report">
+                                     <Select name="value"  id="selected_compliance_report" class="select">
+                                     <option value="all_compliance_report" selected>all</option>
+                                     </Select>
+                                     </div>
+                                     </td>
+									 <td>
+									 <div id="location_compliance_report" class="devices_compliance_report" style="display:none"> 
+									 <Select name="value" id="localisation" class="select">
+									<option value="all" selected>--choose from here--</option>
+									 
+									   {% for obj in localisation.locations %}                                       
+                                       <option value="{{obj.id}}" id="{{obj.id}}_compliance_report">{{obj.name}}</option>
+                                       {% endfor %} 
+                                     </Select>
+                                     </div>
+                                      
+                                       
+									 <div id="deviceClass_compliance_report" class="devices_compliance_report" style="display:none"> 
+									 <Select name="value" id="deviceclass_compliance_report" class="select">
+                                     <option value="all" selected>--choose from here--</option>
+                                       {% for obj in deviceClass.deviceClasses %}
+                                       
+                                       <option value="{{obj.id}}" id="{{obj.id}}_compliance_report">{{obj.name}}</option>
+                                       {% endfor %} 
+                                       </Select>
+                                       </div>
+									 
+									 
+									 <div id="group_compliance_report" class="devices_compliance_report" style="display:none">
+									 
+									 <Select name="value" id="group_compliance_report" class="select">
+									<option value="all" selected>--choose from here--</option>
+									   {% for obj in group.groups %}                                       
+                                       <option value="{{obj.id}}" id="{{obj.id}}_compliance_report">{{obj.name}}</option>
+                                       {% endfor %} 
+                                     </Select>
+                                     
+									 </div>
+									 </td>
+									 <td>
+                                     <input type="text" name="device">
+									 </td>
+									 </tr>
+									 </table>
+                                </div>
+                                </fieldset>
+                                <div id="element_list">
+                                
+                                <br>
+                                <legend style="text-align:left; color:#008cba; background:white;" ><B>Elements</B></legend>
+                                <div class="text-right">
+                                <a id="add_element" class="add-ruleTask btn btn-primary btn-s" role="button" data-toggle="modal"> <em class="fa fa-plus"></em> Add More Elements</a>
+                                </div>
+                                <table class="element_child"> 
+                                        <tr>
+                                        <div class="form-group">
+                                            <td><label class="control-label" for="text-input">Name :</label></td>
+                                            <td align="center"><input id="name_0" class="form-control" type="text" name="name"></td>
+                                        </div>
+                                        </tr>
+                                        
+                                        <tr>
+                                        <div>
+                                        
+                                            <td><label class="control-label" for="text-input">Description :</label></td>
+                                            <td align="center"><input id="description_0" class="form-control" type="text" name="description" ></td>
+                                        </div>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="control-label" for="text-input">Remote Command :</label></td>
+                                            <td align="center"><textarea id="remoteCommand_0" class="form-control" name="remoteCommand" style="margin-left: 23px;"></textarea></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label class="control-label" for="text-input">Checks :</label></td>
+                                            
+                                            <td>
+                                            <br>
+                                            <div class="text-right">
+                                        <a id="add_check_0" class="add-ruleTask btn btn-primary btn-xs" role="button" data-toggle="modal" onclick="add_check(this)"> <em class="fa fa-plus"></em>Add More Checks</a>
+                                        </div>
+                                             <div id="check_list_0">
+                                             
+                                        </div>
+                                        <br>
+                                        <a class="btn btn-primary send_dynamic_form " onclick="get_element_values(0)">Validate</a>
+                                        <input type="hidden" value="" id="element_data_0">
+                                        </tr> 
+                                        </table>
+                                         <hr>  
+                                        <input type="hidden" id="element_list_data" name="element_list_data">
+                                
+                                </div>
+                                <br>
+                                <label><B>You should validate your job before submitting it :</B></label><br> 
+                                <label><B>Validate:</B></label>
+                                <input type="checkbox" name="is_validated" id="is_validated_compliance_report" value="false">
+                                <br>
+                                <br>
+                                <p style="color:red;">You must validate all checks and all elements before sending the compliance report</p>
+                                <button class="btn btn-primary send_dynamic_form" type="submit" onclick="get_all_data_values()">Create Compliance Report</button>                                
+                                </form>
+                                <br>
+                                <br><br>
+                            </div>
+                            </div>
+                            
+</body>
+{% include "footer.html" %}
+<script type="text/javascript" src="{% static 'assets/js/newComplianceReport.js' %}"></script>
+</html>

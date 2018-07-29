@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+        <title>Dashboard</title>
+       {% include "header.html" %}
+    
+</head>
+
+<body>
+    {% include "menu.html" %}   
+    <hr>
+    <div>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab-1" role="tab" data-toggle="tab">Dashboard 1</a></li>
+            <li><a href="#tab-2" role="tab" data-toggle="tab">Dashboard 2</a></li>
+            <li><a href="#tab-3" role="tab" data-toggle="tab">Dashboard 3</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" role="tabpanel" id="tab-1">
+                <div class="col-lg-4 col-md-1 col-md-offset-11">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button"> <i class="icon ion-android-settings"></i></button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation"><a href="#">Start Refresh</a></li>
+                            <li role="presentation"><a href="#">Stop Refresh</a></li>
+                            <li role="presentation"><a href="#">Change Layout</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-8 col-md-offset-0">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-8 col-xs-6">
+                                    <h3 class="panel-title h2"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x text-muted"></i><i class="glyphicon glyphicon-map-marker fa-stack-1x fa-inverse"></i></span> Carte</h3></div>
+                                <div class="col-md-4 col-xs-6 text-right">
+                                    <button class="btn btn-link" type="button"> <i class="icon ion-android-settings"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body"><img src="assets/img/sv.png"></div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-md-offset-0">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-8 col-xs-6">
+                                    <h3 class="panel-title h2"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x text-muted"></i><i class="icon ion-arrow-graph-up-right fa-stack-1x fa-inverse"></i></span> Graphs</h3></div>
+                                <div class="col-md-4 col-xs-6 text-right">
+                                    <button class="btn btn-link" type="button"> <i class="icon ion-android-settings"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body"><img src="assets/img/social-media-monitoring-graph.png"></div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-md-offset-0">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-8 col-xs-6">
+                                    <h3 class="panel-title h2"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x text-muted"></i><i class="fa fa-heartbeat fa-stack-1x fa-inverse"></i></span> Job issues</h3></div>
+                                <div class="col-md-4 col-xs-6 text-right">
+                                    <button class="btn btn-link" type="button"> <i class="icon ion-android-settings"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Job </th>
+                                            <th> </th>
+                                            <th> </th>
+                                            <th> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td> 1</td>
+                                            <td> 12 <i class="icon ion-alert"></i></td>
+                                            <td>25 <i class="fa fa-minus-square"></i></td>
+                                            <td>85 <i class="icon ion-alert-circled"></i> </td>
+                                        </tr>
+                                        <tr>
+                                            <td> 3</td>
+                                            <td>78 <i class="icon ion-alert"></i> </td>
+                                            <td>11 <i class="fa fa-minus-square"></i></td>
+                                            <td>0 <i class="icon ion-alert-circled"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td> 8</td>
+                                            <td> 0 <i class="icon ion-alert"></i></td>
+                                            <td> 4 <i class="fa fa-minus-square"></i></td>
+                                            <td>5 <i class="icon ion-alert-circled"></i></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-md-offset-0">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-8 col-xs-6">
+                                    <h3 class="panel-title h2"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x text-muted"></i><i class="fa fa-minus-square fa-stack-1x fa-inverse"></i></span> Devices issues</h3></div>
+                                <div class="col-md-4 col-xs-6 text-right">
+                                    <button class="btn btn-link" type="button"> <i class="icon ion-android-settings"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Device </th>
+                                            <th>issue </th>
+                                            <th> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>IP_address </td>
+                                            <td>issue </td>
+                                            <td> <i class="icon ion-alert"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>IP_address </td>
+                                            <td>issue </td>
+                                            <td> <i class="icon ion-alert-circled"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>IP_address </td>
+                                            <td>issue </td>
+                                            <td> <i class="icon ion-android-alarm-clock"></i></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" role="tabpanel" id="tab-2">
+                <div class="col-lg-4 col-md-1 col-md-offset-11">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button"> <i class="icon ion-android-settings"></i></button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation"><a href="#">Start </a></li>
+                            <li role="presentation"><a href="#">Refresh </a></li>
+                            <li role="presentation"><a href="#">Change Dashboard</a></li>
+                            <li role="presentation"><a href="#">Change Layout</a></li>
+                            <li role="presentation"><a href="#">Stop </a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-md-offset-0">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-8 col-xs-6">
+                                    <h3 class="panel-title h2"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x text-muted"></i><i class="fa fa-heartbeat fa-stack-1x fa-inverse"></i></span> Job issues</h3></div>
+                                <div class="col-md-4 col-xs-6 text-right">
+                                    <button class="btn btn-link" type="button"> <i class="icon ion-android-settings"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Job_ID </th>
+                                            <th>issue </th>
+                                            <th> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td> 1</td>
+                                            <td>Issue </td>
+                                            <td> <i class="icon ion-android-alarm-clock"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td> 3</td>
+                                            <td>issue 2</td>
+                                            <td> <i class="icon ion-alert"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td> 8</td>
+                                            <td>issue 3</td>
+                                            <td> <i class="icon ion-alert-circled"></i></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 col-md-offset-0">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-8 col-xs-6">
+                                    <h3 class="panel-title h2"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x text-muted"></i><i class="glyphicon glyphicon-map-marker fa-stack-1x fa-inverse"></i></span> Carte</h3></div>
+                                <div class="col-md-4 col-xs-6 text-right">
+                                    <button class="btn btn-link" type="button"> <i class="icon ion-android-settings"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body"><img src="assets/img/sv.png"></div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-md-offset-0">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-8 col-xs-6">
+                                    <h3 class="panel-title h2"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x text-muted"></i><i class="fa fa-minus-square fa-stack-1x fa-inverse"></i></span> Devices issues</h3></div>
+                                <div class="col-md-4 col-xs-6 text-right">
+                                    <button class="btn btn-link" type="button"> <i class="icon ion-android-settings"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Device </th>
+                                            <th>issue </th>
+                                            <th> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>IP_address </td>
+                                            <td>issue </td>
+                                            <td> <i class="icon ion-alert"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>IP_address </td>
+                                            <td>issue </td>
+                                            <td> <i class="icon ion-alert-circled"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>IP_address </td>
+                                            <td>issue </td>
+                                            <td> <i class="icon ion-android-alarm-clock"></i></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" role="tabpanel" id="tab-3">
+                <div class="col-lg-4 col-md-1 col-md-offset-11">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button"> <i class="icon ion-android-settings"></i></button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation"><a href="#">Start </a></li>
+                            <li role="presentation"><a href="#">Refresh </a></li>
+                            <li role="presentation"><a href="#">Change Dashboard</a></li>
+                            <li role="presentation"><a href="#">Change Layout</a></li>
+                            <li role="presentation"><a href="#">Stop </a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 col-md-offset-0">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-8 col-xs-6">
+                                    <h3 class="panel-title h2"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x text-muted"></i><i class="fa fa-heartbeat fa-stack-1x fa-inverse"></i></span> Job issues</h3></div>
+                                <div class="col-md-4 col-xs-6 text-right">
+                                    <button class="btn btn-link" type="button"> <i class="icon ion-android-settings"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Job_ID </th>
+                                            <th>issue </th>
+                                            <th> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td> 1</td>
+                                            <td>Issue </td>
+                                            <td> <i class="icon ion-android-alarm-clock"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td> 3</td>
+                                            <td>issue 2</td>
+                                            <td> <i class="icon ion-alert"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td> 8</td>
+                                            <td>issue 3</td>
+                                            <td> <i class="icon ion-alert-circled"></i></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-md-offset-0">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-8 col-xs-6">
+                                    <h3 class="panel-title h2"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x text-muted"></i><i class="fa fa-minus-square fa-stack-1x fa-inverse"></i></span> Devices issues</h3></div>
+                                <div class="col-md-4 col-xs-6 text-right">
+                                    <button class="btn btn-link" type="button"> <i class="icon ion-android-settings"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Device </th>
+                                            <th>issue </th>
+                                            <th> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>IP_address </td>
+                                            <td>issue </td>
+                                            <td> <i class="icon ion-alert"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>IP_address </td>
+                                            <td>issue </td>
+                                            <td> <i class="icon ion-alert-circled"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>IP_address </td>
+                                            <td>issue </td>
+                                            <td> <i class="icon ion-android-alarm-clock"></i></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-md-offset-0">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-8 col-xs-6">
+                                    <h3 class="panel-title h2"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x text-muted"></i><i class="icon ion-arrow-graph-up-right fa-stack-1x fa-inverse"></i></span> Graphs</h3></div>
+                                <div class="col-md-4 col-xs-6 text-right">
+                                    <button class="btn btn-link" type="button"> <i class="icon ion-android-settings"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body"><img src="assets/img/social-media-monitoring-graph.png"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+   
+</body>
+{% include "footer.html" %}
+
+
+</html>

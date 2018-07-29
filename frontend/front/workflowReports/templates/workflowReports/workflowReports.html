@@ -1,0 +1,108 @@
+
+
+
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workflow Reports</title>
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700">
+    <link rel="stylesheet" href="{% static 'assets/fonts/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/material-icons.css' %}">
+    <link rel="stylesheet" href="{% static "assets/css/aos.css" %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Login-Center.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/MUSA_panel-table.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/MUSA_panel-table1.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="{% static 'assets/css/job-reports.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/toastr.min.css' %}">
+    
+    
+    
+</head>
+
+<body>
+{% include "menu.html" %}    
+<div class="row">
+
+        <div class="col-md-10 col-md-offset-1">
+
+            <div class="panel panel-default panel-table">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col col-xs-6">
+                    <h3 class="panel-title"></h3>Workflows</div>
+                  
+                </div>
+              </div>
+              <div class="panel-body">
+                <table class="table table-striped table-bordered table-list"  id="workflowReports_table">
+                  <thead>
+                    <tr>
+                    	<th hidden="true">Id</th>
+
+                    	<th>Name</th>
+                        <th>Descrption</th>
+                        <th>Insertion Time</th>
+                        <th>Scheduled</th>
+                        <th>Schedule Date</th>
+                    </tr> 
+                    <tbody>
+            
+
+                           {% for workflow in workflowListData.workflows %}
+                           
+                          <tr>
+                            <td hidden="true">{{ workflow.id }}</td>
+                            
+                            <td><a href="job?workflow_id={{ workflow.id }}">{{ workflow.name }}</a></td>
+                            <td>{{ workflow.description }}</td>
+                            <td>{{ workflow.insertion_time }}</td>
+                            <td>{{ workflow.is_scheduled }}</td>
+                            <td>{{ workflow.schedule_time }}</td>
+                            
+                          </tr>
+                          
+                          
+                          
+                          
+                          
+
+                        {% endfor %}
+                              
+  </tbody>  
+                  </thead>
+                  
+                </table>
+
+
+              </div>
+              
+            </div>
+
+</div></div>
+
+    
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/bs-animation.js' %}"></script>
+    <script src="{% static "assets/js/aos.js" %}"></script>
+    <script src="{% static 'assets/js/jquery-1.12.4.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'assets/js/jobs.js' %}"></script>
+    <script src="{% static 'assets/js/workflowReports.js' %}"></script>
+
+            <script src="{% static 'assets/js/toastr.min.js' %}"></script>
+    
+</body>
+{% include "footer.html" %}
+</html>
+
+
+

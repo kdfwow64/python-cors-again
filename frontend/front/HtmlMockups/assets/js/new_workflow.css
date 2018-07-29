@@ -1,0 +1,359 @@
+
+.flowchart-operator {
+    border-radius: 14px;
+    border-color: black;
+
+}
+.ui-draggable-handle{
+    border-radius: 14px;
+}
+.flowchart-operator-title{
+    position: center;
+}
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 50px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+     border-radius: : 8px solid #888;
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    overflow:scroll;
+    height:580px;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 22px;
+    border-radius: : 8px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+body { background-color:#ccf;}
+.container { 
+
+    margin-bottom:250px auto;
+    margin-top: 250px auto;
+
+}
+.flowchart-example-container{
+    height:50px; 
+    width:300px;
+}
+.demo {
+  height: 500px;
+  margin-bottom: 10px;
+  background-color: #e6e6ff;
+  border-radius: 10px;
+}
+.popup-box {
+    position: absolute;
+    border-radius: 5px;
+    background: #fff;
+    display: none;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+    font-family: Arial, sans-serif;
+    z-index: 9999999;
+    font-size: 14px;
+}
+ 
+.popup-box .close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-family: Arial, Helvetica, sans-serif;  
+    font-weight: bold;
+    cursor: pointer;
+    color: #434343;
+    padding: 20px;
+    font-size: 20px;
+}
+ 
+.popup-box .close:hover {
+    color: #000;
+}
+ 
+.popup-box h2 {
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+}
+.popup-box .top {
+    padding: 23px;
+}
+ 
+.popup-box .bottom {
+    background: #eee;
+    border-top: 1px solid #e5e5e5;
+    padding: 20px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.popup-link-1{
+    margin-left: 8px;
+}
+ 
+#blackout {
+    background: rgba(0,0,0,0.3);
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+    z-index: 999999;
+    left: 0;
+    display: none;
+}
+
+
+.popup1-box {
+    position: absolute;
+    border-radius: 5px;
+    background: #fff;
+    display: none;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+    font-family: Arial, sans-serif;
+    z-index: 9999999;
+    font-size: 14px;
+}
+ 
+.popup1-box .close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-family: Arial, Helvetica, sans-serif;  
+    font-weight: bold;
+    cursor: pointer;
+    color: #434343;
+    padding: 20px;
+    font-size: 20px;
+}
+ 
+.popup1-box .close:hover {
+    color: #000;
+}
+ 
+.popup1-box h2 {
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+}
+.popup1-box .top {
+    padding: 23px;
+}
+ 
+.popup1-box .bottom {
+    background: #eee;
+    border-top: 1px solid #e5e5e5;
+    padding: 20px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.popup1-link-1{
+    margin-left: 25px;
+}
+ 
+
+.popup2-box {
+    position: absolute;
+    border-radius: 5px;
+    background: #fff;
+    display: none;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+    font-family: Arial, sans-serif;
+    z-index: 9999999;
+    font-size: 14px;
+}
+ 
+.popup2-box .close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-family: Arial, Helvetica, sans-serif;  
+    font-weight: bold;
+    cursor: pointer;
+    color: #434343;
+    padding: 20px;
+    font-size: 20px;
+}
+ 
+.popup2-box .close:hover {
+    color: #000;
+}
+ 
+.popup2-box h2 {
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+}
+.popup2-box .top {
+    padding: 23px;
+}
+ 
+.popup2-box .bottom {
+    background: #eee;
+    border-top: 1px solid #e5e5e5;
+    padding: 20px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.popup2-link-1{
+    margin-left: 25px;
+}
+
+.popup3-box {
+    position: absolute;
+    border-radius: 5px;
+    background: #fff;
+    display: none;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+    font-family: Arial, sans-serif;
+    z-index: 9999999;
+    font-size: 14px;
+}
+ 
+.popup3-box .close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-family: Arial, Helvetica, sans-serif;  
+    font-weight: bold;
+    cursor: pointer;
+    color: #434343;
+    padding: 20px;
+    font-size: 20px;
+}
+ 
+.popup3-box .close:hover {
+    color: #000;
+}
+ 
+.popup3-box h2 {
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+}
+.popup3-box .top {
+    padding: 23px;
+}
+ 
+.popup3-box .bottom {
+    background: #eee;
+    border-top: 1px solid #e5e5e5;
+    padding: 20px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.popup3-link-1{
+    margin-left: 25px;
+}
+
+
+
+
+.popup4-box {
+    position: absolute;
+    border-radius: 5px;
+    background: #fff;
+    display: none;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+    font-family: Arial, sans-serif;
+    z-index: 9999999;
+    font-size: 14px;
+}
+ 
+.popup4-box .close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-family: Arial, Helvetica, sans-serif;  
+    font-weight: bold;
+    cursor: pointer;
+    color: #434343;
+    padding: 20px;
+    font-size: 20px;
+}
+ 
+.popup4-box .close:hover {
+    color: #000;
+}
+ 
+.popup4-box h2 {
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+}
+
+.popup4-box .bottom {
+    background: #eee;
+    border-top: 1px solid #e5e5e5;
+    padding: 20px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.popup4-box .top {
+    padding: 23px;
+}
+.popup4-link-1{
+    margin-left: 25px;
+}
+
+
+.popup5-box {
+    position: fixed;
+    border-radius: 8px;
+    background: #fff;
+    display: none;
+    font-family: Arial, sans-serif;
+    z-index: 9999999;
+    font-size: 14px;
+    overflow: scroll;
+}
+ 
+.popup5-box .close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-family: Arial, Helvetica, sans-serif;  
+    font-weight: bold;
+    cursor: pointer;
+    color: #434343;
+    padding: 20px;
+    font-size: 20px;
+}
+ 
+.popup5-box .close:hover {
+    color: #000;
+}
+ 
+
+.popup5-box .top {
+    padding: 23px;
+}
+ 
+.popup5-box .bottom {
+    background: #eee;
+    border-top: 1px solid #e5e5e5;
+    padding: 10px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}

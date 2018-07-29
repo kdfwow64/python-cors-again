@@ -1,0 +1,630 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<title>Triggers</title>
+<link rel="stylesheet" href="{% static 'assets/css/toastr.min.css' %}">
+ <link rel="stylesheet" href="{% static 'assets/css/trigger.css' %}" id="mycss">
+{% include "header.html" %}
+
+</head>
+<body>
+{% include "menu.html" %}   
+<input id = "request_response_device" type = "hidden" value='{{response}}'/>
+    <ul class="nav nav-pills">
+        <li><a href="/notifications">Notifications </a></li>
+        <li class="active"><a href="/triggers">Triggers </a></li>
+    </ul>
+    <hr>
+<input id = "request_response_device" type = "hidden" value='{{response}}'/>
+<div class="col col-xs-12" class="text-center">
+        <div class="ministry-tabs">
+            <div class="tab-content">
+
+        <div class="container" style="border-radius: 10px;">
+        <div class="row" style="border-radius: 10px;">
+        <div style="border-radius: 10px;">
+            <div class="panel panel-default panel-table" style="border-radius: 10px;">
+              <div class="panel-heading" style="border-radius: 10px;">
+                <div class="row" style="border-radius: 10px;">
+                  <div class="col col-xs-1" style="border-radius: 10px;">
+        <div class="col col-xs-6 text-left">            
+        <h3 class="panel-title">Triggers</h3></div>
+        </div>
+        <div class="col text-right">
+        
+        <div><a class="btn btn-primary text-right" href="#newtrigger_Modal" data-toggle="modal">New Trigger</a>
+        <br />
+        <br />
+        <div class="modal fade" role="dialog" tabindex="-1" id="newtrigger_Modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width: 150%;margin-left: -25%;" >
+                    <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        
+                    <h4 class="modal-title col col-xs-6">New Trigger</h4>
+                    </div>
+                    <input type="hidden" name="" value="new_trigger" >
+                    <div class="modal-body">
+                    <form method="POST" id="formRule">  {% csrf_token %}
+                    <input type="hidden" id="rule1" name="rules">
+                    <table>
+                    <tr>
+                    <td class="left-color"><label class="control-label col col-xs-6 text-left" style="width: 200px;">Name :</label></td>
+                    <td class="right-color"><input type="text" class="form-control" name="name"></td>
+                    </tr>
+                    <tr>
+                    <td class="left-color"><label class="control-label col col-xs-6 text-left">Enable :</label></td>
+                    <td class="right-color"><label class="switch"><input type="checkbox" onclick="enabledValueTrigger()" class="form-control" id="enabledTrigger" name="enabled" value="true" checked >
+                    <span class="slider round"></span>
+                    </label>
+                    </td>
+                    </tr>
+                    <tr>
+                    <td class="left-color"><label class="control-label col col-xs-6 text-left">Rule :</label></td>
+                    <td class="right-color">
+         			<div class="rule-list"> 
+                    <table>
+                    <tbody>
+                    		<tr>
+                    			<select id= "" class="form-control" style="width: 100px;" name="relation">
+                    				<option value= "all">All</option>
+                    				<option value= "any">Any</option>
+                    			</select></tr>
+                    			<tr>
+                    			
+                    			
+                    			 <select id="element1" name="element" class="form-control element">
+	                    				<option value="None" selected>--choose from here--</option>
+	                    				<option value="task">device</option>
+	                    				<option value="job">job</option>        
+				                    </select>
+                    			
+                    			
+				              <!--       <input type="radio" name="element"  value="task"  />
+                                        <label>device</label><br> 
+                                        <input type="radio" name="element" value="job" />
+                                        <label>job</label><br> 
+		      -->
+                    		</tr>
+                    		</tbody>
+                    		</table>
+                    		<table  id="ruleTable" class="rule-list">
+                    		<tbody>
+                    		
+                    		<tr id="task-div" hidden="true">
+		                    
+		                    
+		                  	 <td class="right-color td-border" >
+                                 <Select class="form-control" id="devices_trigger" style="width:180px;">
+                                 	<option selected>--choose from here--</option>
+                                 	<option class="task" value="all">all</option>
+		                            <option class="task" value="group">group</option>
+		                            <option class="task" value="location">location</option>
+		                            <option class="task" value="deviceClass">deviceCLass</option>
+
+                                 </Select>
+                            </td> 
+									 <td class="right-color td-border" >
+									 <div id="location" class="devices_trigger" hidden="true"> 
+									 <Select name="location" id="locationJson" class="select form-control" style="width:100px;">
+                                   <option value="None" selected>--choose frome here--</option>
+	  <!-- 								   {% for obj in location.locations %}                                       
+                                       <option value="{{obj.id}}" id="{{obj.id}}">{{obj.name}}</option>
+                                       {% endfor %}  -->
+                                     </Select>
+                                     </div>
+                                      
+                                       
+									 <div id="deviceClass" class="devices_trigger" hidden="true">
+									 <Select name="deviceClass" id="deviceClassJson" class="select form-control" style="width:100px;">
+									 <option value="None" selected>--choose frome here--</option>
+                                       <!-- {% for obj in deviceClass.deviceClasses %}
+                                     
+                                       <option value="{{obj.id}}" id="{{obj.id}}" >{{obj.name}}</option>
+                                       {% endfor %}  -->
+                                       </Select>
+                                       </div>
+									 
+									 
+									 <div id="group" class="devices_trigger" hidden="true" style="width:100px;">
+									
+									 <Select name="group" id="groupJson" class="select form-control">
+                                     <option value="None" selected>--choose frome here--</option>
+									   <!-- {% for grp in group.groups %}                                       
+                                       <option value="{{grp.id}}" id="{{grp.id}}">{{grp.name}}</option>
+                                         {% endfor %} -->
+                                     </Select>
+                                   </div>
+    
+									 </td>
+								<td id="groupSection" style="width:100px; border:0px" hidden="true">
+								  <Select name="device" id="deviceJson" class="select form-control">
+                                     <option value="None" selected>choose from here</option>
+<!-- 
+									   {% for obj in devices.devices %}
+									                           
+                                       <option value="{{obj.id}}" >{{obj.name}}</option>
+                                       {% endfor %}  -->
+                                     </Select>
+                                    
+								</td>
+                            
+		                    <td class="right-color td-border" style="width:180px;">
+									<Select id="operation1" name="operationTask" class="form-control">
+										<option value="None" selected>--choose from here--</option>                               
+			                            <option value="equals">equals</option>
+			                            <option value="not_equals">not equals</option>
+			                       	</Select>
+		                   	</td>
+		                       
+		                    <td class="right-color td-border" style="width: 180px;">
+		                    <Select id="value1" name="valueTask" class="form-control">
+										<option value="None" selected>--choose from here--</option>                               
+			                            <option value="SUCCESSFUL">SUCCESSFUL</option>
+			                            <option value="FAILED">FAILED</option>
+			                       	</Select>
+		                   	</td>
+		                   	<td style="width: 100px">
+						          <form method="GET">
+							          <a class="add-ruleTask btn btn-primary btn-s" role="button" data-toggle="modal"  ><em class="fa fa-plus"></em></a>
+						          
+						          </form>
+						          
+								<div class="modal fade" role="dialog" tabindex="-1" id="delete_{{ rules.id }}_rules">
+						            <div class="modal-dialog" role="document">
+						                <div class="modal-content">
+						                    <div class="modal-header">
+						                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+						                        <h4 class="modal-title col col-xs-6 text-left">Delete Confirmation</h4></div>
+						                    <div class="modal-body">
+						                    <form method="GET">
+						                    
+						                    <h4>Are you sure you want to delete : {{ rules.id }}</h4>
+						                    
+						                    <button class="btn btn-default" type="button" data-dismiss="modal" >NO</button>
+						                    <button type="submit" name="delete_trigger" value="{{ trigger.id }}" class="btn btn-danger">yes</button>
+						                    </form>
+						                </div>
+						            </div>
+						        </div>
+						    </div> 	
+	                 </td>   	
+
+                    </tr>
+                    	
+                    <tr id="job-div" hidden="true">
+		                    
+		                  	 <td class="tight-color td-border" name="column">
+                                 <Select class="form-control " id="column" name="column" style="width:135px;">
+                                 	<option value="None" selected>--choose from here--</option>
+		                            <option class="job" value="name"  >name</option>                            
+		                            <option class="job" value="is_validated" >is_validated</option>
+		                            <option class="job" value="status" >status</option>
+		                            <option class="job" value="agent_type" >agent_type</option>
+                                 </Select>
+                            </td> 
+                            
+                          
+									  
+									
+		                    <td class="right-color td-border">
+									<Select id="operation" name="operationJob" class="form-control">
+										<option value="None" selected>--choose from here--</option>                               
+			                            <option value="equals">equals</option>
+			                            <option value="not_equals">not equals</option>
+			                       	</Select>
+		                   	</td>
+		                       
+		                    <td class="right-color td-border">
+		                    
+		                    <div id="chooseHere-div" class="column">
+		                    <Select id="value" name="valueJobChoose" class="form-control">
+										<option value="None" selected>--choose from here--</option>                               
+			                       	</Select>
+			                 </div>
+			                 
+		                    <div id="status" class="column" style="display:none;">
+		                    <Select id="stat" name="valueJobStatus" class="form-control">
+										<option value="None" selected>--choose from here--</option>                               
+			                            <option value="SUCCESSFUL">SUCCESSFUL</option>
+			                            <option value="FAILED">FAILED</option>
+			                       	</Select>
+			                 </div>
+			                 <div id="is_validated" class="column" style="display:none;">
+		                    <Select id="valid" name="valueJobIsValide" class="form-control">
+										<option value="None" selected>--choose from here--</option>                               
+			                            <option value="true">True</option>
+			                            <option value="false">False</option>
+			                       	</Select>
+			                 </div>
+			                 <div id="agent_type" class="column" style="display:none;">
+		                    <Select id="agent" name="valueJobAgentType" class="form-control">
+										<option value="None" selected>--choose from here--</option>                               
+			                            <option value="configuration_differ_precheck">configuration differ precheck</option>
+			                            <option value="configuration_differ_postcheck">configuration differ postcheck</option>
+			                            <option value="configuration_parser">configuration parser</option>
+			                            <option value="configuration_sender">configuration sender</option>
+			                            <option value="configuration_image_loader">configuration image loader</option>
+			                       	</Select>
+			                 </div>
+			                 <div id="name" class="column" style="display:none;">
+			                 <input type="text" id="nam" name="valueJobName" value="">
+			                 </div>
+		                   	</td>
+		                   	<td style="width: 100px">
+						          <form method="GET">
+							          <a class="add-ruleJob btn btn-primary btn-s"  role="button" data-toggle="modal"  ><em class="fa fa-plus"></em></a>
+						          </form>
+						          
+								<div class="modal fade" role="dialog" tabindex="-1" id="delete_{{ rules.id }}_rules">
+						            <div class="modal-dialog" role="document">
+						                <div class="modal-content">
+						                    <div class="modal-header">
+						                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+						                        <h4 class="modal-title col col-xs-6 text-left">Delete Confirmation</h4></div>
+						                    <div class="modal-body">
+						                    <form method="GET">
+						                    
+						                    <h4>Are you sure you want to delete : {{ rules.id }}</h4>
+						                    
+						                    <button class="btn btn-default" type="button" data-dismiss="modal" >NO</button>
+						                    <button type="submit" name="delete_trigger" value="{{ trigger.id }}" class="btn btn-danger">yes</button>
+						                    </form>
+						                </div>
+						            </div>
+						        </div>
+						    </div> 	
+	                 </td>   	
+                    </tr>
+
+                    			<!-- <tr>
+				                    <select id="element1" name="element" class="form-control element" >
+	                    				<option value="None" selected>--choose from here--</option>
+	                    				<option value="task">device</option>
+	                    				<option value="job">job</option>        
+				                    </select>
+		     
+                    		</tr>
+                    		
+		                    <tr id="rul1">
+		                    <input type="hidden" id="rule1" name="rules">
+		                    
+		                  	 <td class="tight-color td-border">
+                                 <Select class="form-control column" id="devices_trigger" style="width:135px;">
+                                 	<option selected>--choose from here--</option>
+                                 	<option class="task" value="all" style="display:none">all</option>
+		                            <option class="task" value="group" style="display:none">group</option>
+		                            <option class="task" value="location" style="display:none">location</option>
+		                            <option class="task" value="deviceClass" style="display:none">deviceCLass</option>
+		                            <option class="job" value="name" style="display:none">name</option>                            
+		                            <option class="job" value="is_validate" style="display:none">is_validate</option>
+		                            <option class="job" value="status" style="display:none">status</option>
+		                            <option class="job" value="agent_type" style="display:none">agent_type</option>
+                                 </Select>
+                            </td> 
+                            
+                          
+									  
+									 <td>
+									 <div id="location" class="devices_trigger" style="display:none"> 
+									 <Select name="location" id="location" class="select form-control">
+                                     <option value="None" selected>--choose frome here--</option>
+									   {% for obj in location.locations %}                                       
+                                       <option value="{{obj.id}}" id="{{obj.id}}">{{obj.name}}</option>
+                                       {% endfor %} 
+                                     </Select>
+                                     </div>
+                                      
+                                       
+									 <div id="deviceClass" class="devices_trigger" style="display:none">
+									 <Select name="deviceClass" id="deviceclass_trigger" class="select form-control">
+                                       {% for obj in deviceClass.deviceClasses %}
+                                     <option value="None" selected>--choose frome here--</option>
+                                       <option value="{{obj.id}}" id="{{obj.id}}" >{{obj.name}}</option>
+                                       {% endfor %} 
+                                       </Select>
+                                       </div>
+									 
+									 
+									 <div id="group" class="devices_trigger" style="display:none">
+									
+									 <Select name="group" id="group_trigger" class="select form-control">
+                                     <option value="None" selected>--choose frome here--</option>
+									   {% for grp in group.groups %}                                       
+                                       <option value="{{grp.id}}" id="{{grp.id}}">{{grp.name}}</option>
+                                         {% endfor %}
+                                     </Select>
+                                   </div>
+    
+									 </td>
+								<td id="groupSection" style="display:none">
+								  <Select name="device" class="select form-control">
+                                     <option value="all" selected>all</option>
+
+									   {% for obj in devices.devices %}
+									                           
+                                       <option value="{{obj.id}}" >{{obj.name}}</option>
+                                       {% endfor %} 
+                                     </Select>
+                                    
+								</td>
+                            
+		                    <td class="right-color td-border">
+									<Select id="operation1" name="operation" class="form-control">
+										<option value="None" selected>--choose from here--</option>                               
+			                            <option value="equals">equals</option>
+			                            <option value="not_equals">not equals</option>
+			                       	</Select>
+		                   	</td>
+		                       
+		                    <td class="right-color td-border">
+		                    <Select id="operation1" name="value" class="form-control">
+										<option value="None" selected>--choose from here--</option>                               
+			                            <option value="SUCCESSFUL">SUCCESSFUL</option>
+			                            <option value="FAILED">FAILED</option>
+			                       	</Select>
+		                   	</td>
+                    </tr> -->
+                  
+                    </table>
+                    </div>
+                     
+          
+            
+               </table>
+                    <input type="submit" class="btn btn-primary" name="new_trigger" value="Submit"></td>
+                    </form>
+					<div id="rule"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+                  </div>
+                </div>
+              </div>
+              <div class="panel-body">
+              
+                <table id="trigger_table" class="table table-striped table-bordered" cellspacing="0">
+                  <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Enable</th>
+                        <th><em class="fa fa-cog"></em></th>
+                        
+                    </tr> 
+                  </thead>
+                   <tfoot>
+                    <tr>
+                        
+                        <th>Name</th>
+                        <th>Enable</th>
+                        <th><em class="fa fa-cog"></em></th>
+                        
+                    </tr> 
+                  </tfoot>
+                  <tbody>
+
+                           {% for trigger in trigger_list.triggers %}
+                          <tr>
+                            <td>{{ trigger.name }}</td>
+                           	<td>{{ trigger.enabled }}</td>    
+                           	 			   
+                            <td align="center">
+                            <input type="hidden" value="{{ trigger.name }}" name="name" />
+					          <form method="GET">
+					          <a class="btn btn-danger btn-s" name="name" role="button" href="#delete_{{ trigger.id }}_trigger" data-toggle="modal" ><em class="fa fa-trash"></em></a>
+<!-- 					          <a class="btn btn-default btn-s edit_rule" id="{{trigger.id}}" name="name" role="button" href="#edit_{{ trigger.id }}_trigger" data-toggle="modal" onclick="showId(this.id);"><em class="fa fa-pencil"></em></a>
+ -->					          </form>
+					          
+				<div class="modal fade" role="dialog" tabindex="-1" id="edit_{{ trigger.id }}_trigger" >
+	            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width: 170%;margin-left: -30%;" >
+                    <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        
+                    <h4 class="modal-title col col-xs-6">Edit Trigger</h4>
+                    </div>
+                  
+                    <div class="modal-body">
+                    <form method="GET" class="edit_formRule">
+                    <input type="hidden" name="trigger_id" value="{{trigger.id}}">  
+                    <table >
+                    <tr>
+                    <td class="left-color"><label class="control-label col col-xs-6 text-left" style="width: 200px;">Name :</label></td>
+                    <td class="right-color"><input type="text" class="form-control" name="name" value={{trigger.name}}></td>
+                    </tr>
+                    <tr>
+                    <td class="left-color"><label class="control-label col col-xs-6 text-left">Enable :</label></td>
+                    <td class="right-color"><label class="switch"><input type="checkbox"  onclick="enabledValueTriggerEdit()" class="form-control" id="enabledTriggerEdit" name="enabled" value="{{trigger.enabled}}" checked >
+                    <span class="slider round"></span>
+                    </label>
+                    </td>
+                    </tr>
+                    <tr>
+                    <td class="left-color"><label class="control-label col col-xs-6 text-left">Rule :</label></td>
+                    <td class="right-color">
+                    
+         			<div > 
+                    <table id="edit_ruleTable_{{trigger.id}}" class="edit_rule_list">
+                    <tbody>
+                  	<tr>
+           			  <select id= "" class="form-control" style="width: 100px;" name="relation">
+           			  {% if trigger.relation == 'all' %}
+           				<option value= "{{trigger.relation}}">{{trigger.relation}}</option>
+           				<option value= "any">Any</option>
+           			  {% endif %}
+           		   	  {% if trigger.relation == 'any' %}
+           		   	  <option value= "{{trigger.relation}}">{{trigger.relation}}</option>
+           		   	  <option value= "all">All</option>
+           		   	  {% endif %}
+           			  </select>
+           		   </tr>
+ 					{% for rule in trigger.rules %}	 
+ 					
+ 					
+ 					
+ 					
+ 					
+ 					
+ 					
+ 					<tr>
+		                    <input type="hidden" id="edit_rules_{{trigger.id}}_{{forloop.counter}}" name="rules">
+				                    <select id="edit_element_{{trigger.id}}_{{forloop.counter}}" class="form-control edit_element" style="width:135px;">
+				                    {% if rule.element == 'task' %}              
+	                    				<option id="elem_{{trigger.id}}" value="{{rule.element}}" selected>device</option>	                    			
+                    					<option value="job">job</option>
+                    				{% endif %}  
+                    				{% if rule.element == 'job' %}              
+	                    				<option id="elem_{{trigger.id}}" value="{{rule.element}}" selected>job</option>	                    			
+                    					<option value="task">device</option>
+                    				{% endif %} 
+				                    </select>
+                    		</tr> 
+ 					
+ 					
+ 					
+ 					
+ 				
+		                     <tr id="edit_rul_{{trigger.id}}_{{forloop.counter}}">
+		                    <input type="hidden" id="edit_rules_{{trigger.id}}_{{forloop.counter}}" name="rules">
+		                  	 <td class="right-color td-border">
+                                 <Select class="form-control edit_column_{{trigger.id}}" id="edit_column_{{trigger.id}}_{{forloop.counter}}" style="width:135px;">
+                                 	<option selected>{{rule.column}}</option>
+                                 	<option class="task" value="name" >name</option>                            
+		                            <option class="job" value="is_validated" >is validated</option>
+		                            <option class="job" value="status" >status</option>
+		                            <option class="job" value="agent_type">agent type</option>
+                                 </Select>
+                            </td>    
+                                       
+		                    <td class="right-color td-border" >
+									<Select id="edit_operation_{{trigger.id}}_{{forloop.counter}}" class="form-control" style="width:135px;">
+										<option selected>{{rule.operation}}</option>                               
+			                            <option value="equals">equals</option>
+			                            <option value="not equals">not equals</option>
+			                       	</Select>
+		                   	</td>
+		                       	
+		                    <td class="right-color td-border">
+		                    	<Select id="edit_value_{{trigger.id}}_{{forloop.counter}}" class="form-control" style="width:135px;">
+		                    	{% if rule.column == 'status' %}
+		                    	 {% if rule.value == 'SUCCESSFUL' %}
+										<option selected>{{rule.value}}</option>                               
+			                            <option value="FAILED">FAILED</option>
+			                     {% endif %}
+		                    	 {% if rule.value == 'FAILED' %}
+			                            <option selected>{{rule.value}}</option>
+			                            <option value="SUCCESSFUL">SUCCESSFUL</option>
+			                       	</Select>
+		                    	{% endif %}
+		                    	{% endif %}
+		                    	{% if rule.column == 'is_validated' %}
+		                    	 {% if rule.value == 'true' %}
+										<option selected>{{rule.value}}</option>                               
+			                            <option value="false">false</option>
+			                     {% endif %}
+		                    	 {% if rule.value == 'false' %}
+			                            <option selected>{{rule.value}}</option>
+			                            <option value="true">true</option>
+			                       	</Select>
+		                    	{% endif %}
+		                    	{% endif %}
+		                    	
+		                    	
+		                    	
+		                    	
+		                    	
+		                   	</td>		                   
+                    </tr>
+           {%endfor%} 
+                    </table>
+                  </div>
+                     <td style="width: 100px">
+						          <form method="GET">
+							          <a class= "btn btn-primary btn-s edit_add_rule" id="{{trigger.id}}" role="button" data-toggle="modal"><em class="fa fa-plus"></em></a>
+							          <a class="btn btn-danger btn-s" name="name" role="button" href="#delete_{{ rules.id }}_rules" data-toggle="modal" ><em class="fa fa-trash"></em></a>
+						          </form>
+						          
+								<div class="modal fade" role="dialog" tabindex="-1" id="delete_{{ rules.id }}_rules">
+						            <div class="modal-dialog" role="document">
+						                <div class="modal-content">
+						                    <div class="modal-header">
+						                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+						                        <h4 class="modal-title col col-xs-6 text-left">Delete Confirmation</h4></div>
+						                    <div class="modal-body">
+						                    <form method="GET">
+						                    
+						                    <h4>Are you sure you want to delete : {{ rules.id }}</h4>
+						                    
+						                    <button class="btn btn-default" type="button" data-dismiss="modal" >NO</button>
+						                    <button type="submit" name="delete_trigger" value="{{ trigger.id }}" class="btn btn-danger">yes</button>
+						                    </form>
+						                </div>
+						            </div>
+						        </div>
+						    </div> 	
+	                 </td>   	
+                    <tr>
+                   	 <td class="left-color"><input type="submit" class="btn btn-primary" name="edit_trigger" id={{trigger.id}} value="Submit" onclick="showId(this.id);"></td>
+                    </tr>
+                    
+               </table>
+                    
+                    </form>
+				
+                </div>
+            </div>
+        </div>
+    </div>		          
+			<div class="modal fade" role="dialog" tabindex="-1" id="delete_{{ trigger.id }}_trigger">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title col col-xs-6 text-left">Delete Confirmation</h4></div>
+                    <div class="modal-body">
+                    <form method="GET">
+                    
+                    <h4>Are you sure you want to delete : {{ trigger.name }}</h4>
+                    
+                    <button class="btn btn-default" type="button" data-dismiss="modal" >NO</button>
+                    <button type="submit" name="delete_trigger" value="{{ trigger.id }}" class="btn btn-danger">yes</button>
+                    </form>
+              
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+                            </td>
+                            
+                          </tr>
+                          
+                        {% endfor %}
+                              
+                       </tbody>  
+                </table>
+            
+              </div>
+              
+                  </div>
+                </div>
+              </div>
+            </div>
+
+</div></div></div></div>
+
+</body>
+{% include "footer.html" %}
+                            <input type="hidden" name="deviceClassList" id="deviceClassList" value="{{deviceClassHtml}}">
+                            <input type="hidden" name="locationList" id="locationList" value="{{locationHtml}}">
+                            <input type="hidden" name="groupList" id="groupList" value="{{groupHtml}}">
+                            <input type="hidden" name="devicesList" id="devicesList" value="{{devicesHtml}}">
+<script src="{% static 'assets/js/toastr.min.js' %}"></script>
+<script src="{% static 'assets/js/trigger.js' %}"> </script>
+</html>

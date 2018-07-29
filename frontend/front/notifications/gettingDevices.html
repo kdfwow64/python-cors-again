@@ -1,0 +1,107 @@
+<tr id="task-div" hidden="true">
+		                    <input type="hidden" id="rule1" name="rules">
+		                    
+		                  	 <td class="right-color td-border" >
+                                 <Select class="form-control column" id="devices_trigger" style="width:180px;">
+                                 	<option selected>--choose from here--</option>
+                                 	<option class="task" value="all">all</option>
+		                            <option class="task" value="group">group</option>
+		                            <option class="task" value="location">location</option>
+		                            <option class="task" value="deviceClass">deviceCLass</option>
+
+                                 </Select>
+                            </td> 
+                            
+                          
+									 
+									 <td class="right-color td-border" >
+									 
+									 
+									 
+									 <div id="location" class="devices_trigger" hidden="true"> 
+									 <Select name="location" id="location" class="select form-control" style="width:100px;">
+                                     <option value="None" selected>--choose frome here--</option>
+									   {% for obj in location.locations %}                                       
+                                       <option value="{{obj.id}}" id="{{obj.id}}">{{obj.name}}</option>
+                                       {% endfor %} 
+                                     </Select>
+                                     </div>
+                                      
+                                       
+									 <div id="deviceClass" class="devices_trigger" hidden="true">
+									 <Select name="deviceClass" id="deviceclass_trigger" class="select form-control" style="width:100px;">
+									 <option value="None" selected>--choose frome here--</option>
+                                       {% for obj in deviceClass.deviceClasses %}
+                                     
+                                       <option value="{{obj.id}}" id="{{obj.id}}" >{{obj.name}}</option>
+                                       {% endfor %} 
+                                       </Select>
+                                       </div>
+									 
+									 
+									 <div id="group" class="devices_trigger" hidden="true" style="width:100px;">
+									
+									 <Select name="group" id="group_trigger" class="select form-control">
+                                     <option value="None" selected>--choose frome here--</option>
+									   {% for grp in group.groups %}                                       
+                                       <option value="{{grp.id}}" id="{{grp.id}}">{{grp.name}}</option>
+                                         {% endfor %}
+                                     </Select>
+                                   </div>
+    
+									 </td>
+								<td id="groupSection" style="width:100px; border:0px" hidden="true">
+								  <Select name="device" class="select form-control">
+                                     <option value="all" selected>all</option>
+
+									   {% for obj in devices.devices %}
+									                           
+                                       <option value="{{obj.id}}" >{{obj.name}}</option>
+                                       {% endfor %} 
+                                     </Select>
+                                    
+								</td>
+                            
+		                    <td class="right-color td-border" style="width:180px;">
+									<Select id="operation1" name="operation" class="form-control">
+										<option value="None" selected>--choose from here--</option>                               
+			                            <option value="equals">equals</option>
+			                            <option value="not_equals">not equals</option>
+			                       	</Select>
+		                   	</td>
+		                       
+		                    <td class="right-color td-border" style="width: 180px;">
+		                    <Select id="operation1" name="value" class="form-control">
+										<option value="None" selected>--choose from here--</option>                               
+			                            <option value="SUCCESSFUL">SUCCESSFUL</option>
+			                            <option value="FAILED">FAILED</option>
+			                       	</Select>
+		                   	</td>
+		                   	<td style="width: 100px">
+						          <form method="GET">
+							          <a class="add-ruleTask btn btn-primary btn-s" role="button" data-toggle="modal"  ><em class="fa fa-plus"></em></a>
+							          <a class="btn btn-danger btn-s" name="name" role="button" href="#delete_{{ rules.id }}_rules" data-toggle="modal" ><em class="fa fa-trash"></em></a>
+						          </form>
+						          
+								<div class="modal fade" role="dialog" tabindex="-1" id="delete_{{ rules.id }}_rules">
+						            <div class="modal-dialog" role="document">
+						                <div class="modal-content">
+						                    <div class="modal-header">
+						                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+						                        <h4 class="modal-title col col-xs-6 text-left">Delete Confirmation</h4></div>
+						                    <div class="modal-body">
+						                    <form method="GET">
+						                    
+						                    <h4>Are you sure you want to delete : {{ rules.id }}</h4>
+						                    
+						                    <button class="btn btn-default" type="button" data-dismiss="modal" >NO</button>
+						                    <button type="submit" name="delete_trigger" value="{{ trigger.id }}" class="btn btn-danger">yes</button>
+						                    </form>
+						                </div>
+						            </div>
+						        </div>
+						    </div> 	
+	                 </td>   	
+
+                    </tr>
+                    	

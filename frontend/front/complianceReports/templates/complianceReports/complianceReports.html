@@ -1,0 +1,99 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<title>Compliance Reports</title>
+
+{% include "header.html" %}
+
+</head>
+<body>
+{% include "menu.html" %}   	
+<hr>
+<input id = "request_response" type = "hidden" value='{{response}}'/>
+<div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    
+    <div class="row">
+    
+        <div class="col-md-10 col-md-offset-1">
+
+            <div class="panel panel-default panel-table">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col col-xs-6">
+                    <h3 class="panel-title"></h3>Compliances</div>
+                    <div class="col col-xs-6 text-right">
+                    <a href="/complianceReports/complianceReportsCreate"><button type="button" class="btn btn-sm btn-primary btn-create">New Compliance Report</button></a>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-body">
+                <table class="table table-striped table-bordered table-list display" id="compliancelist" cellspacing="0" width="100%">
+                  <thead>
+                    <tr>
+                    	<th hidden="true">Id</th>
+                    	<th>Name</th>
+                    	<th>Is Validated</th>
+                        <th>Description</th>
+                        <th>Creation Time</th>
+                        <th><em class="fa fa-cog"></em></th>
+                    </tr> 
+                  </thead>
+                  <tbody>
+                           {% for compliance in jsondata.compliance_reports %}
+                          <tr>
+                            <td hidden="true">{{ compliance.id }}</td>
+                            <td><a href="complianceExecutionList?compliance_id={{ compliance.id }}">{{ compliance.name }}</a></td>
+                            <td>{{ compliance.is_validated }}</td>
+                            <td>{{ compliance.description }}</td>
+                            <td>{{ compliance.creation_time }}</td>
+                          <td><a class="btn btn-danger btn-s editAgent" name="name" role="button" href="#delete_{{ compliance.id }}_compliance" data-toggle="modal" ><em class="fa fa-trash"></em></a>
+                          <div class="modal fade" role="dialog" tabindex="-1" id="delete_{{ compliance.id }}_compliance">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title col col-xs-6 text-left">Delete Confirmation</h4></div>
+                    <div class="modal-body">
+                    <form method="GET">
+                    
+                    <h4>Are you sure you want to delete : {{ compliance.name }}</h4>
+                    
+                    <button class="btn btn-default" type="button" data-dismiss="modal" >NO</button>
+                    <button type="submit" name="delete_compliance" value="{{ compliance.id }}" class="btn btn-danger">yes</button>
+                    </form>
+              
+                </div>
+            </div>
+        </div>
+    </div>
+                          </td>
+                          </tr>
+                        {% endfor %}
+  </tbody>
+          
+                    
+                </table>
+          
+              </div>
+         
+            </div>
+
+</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% include "footer.html" %}
+<script src="{% static 'assets/js/complianceReports.js' %}"></script></html>
+
+
+
+

@@ -1,0 +1,15 @@
+appdirs==1.4.3
+Django==1.11
+get
+packaging==16.8
+post
+public
+pyparsing==2.2.0
+pytz==2017.2
+query-string
+request
+requests==2.13.0
+#setupfiles==0.0.50
+six==1.10.0
+unicodecsv
+cryptography

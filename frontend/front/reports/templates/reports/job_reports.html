@@ -1,0 +1,102 @@
+
+
+
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs Reports</title>
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700">
+    <link rel="stylesheet" href="{% static 'assets/fonts/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/material-icons.css' %}">
+    <link rel="stylesheet" href="{% static "assets/css/aos.css" %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Login-Center.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/MUSA_panel-table.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/MUSA_panel-table1.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/jquery.dataTables.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/job-reports.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/toastr.min.css' %}">
+    
+    
+</head>
+
+<body>
+{% include "menu.html" %}    
+
+    <hr>
+    <div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+             
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+              <div class="panel-body">
+                <table class="table table-striped table-bordered table-list display" id="jobreporttable" cellspacing="0" width="100%">
+                  <thead>
+                    <tr>
+                    	<th hidden="true">Id</th>
+                    	<th>Name</th>
+                    	<th>Agent Type</th>
+                        <th>Insertion Time</th>
+                        <th>Scheduled</th>
+                        <th>Schedule Date</th>
+                        <th>status</th>
+                        <th>processing start time</th>
+                  	    <th>processing end time</th>
+                        <th>Details</th>
+
+		  </tr> 
+                  </thead>
+                  <tbody>
+            
+
+                           {% for obj in jsondata.jobs %}
+                           <tr>
+                            <td hidden="true">{{ obj.id }}</td>
+                            <td><a href="tasks?job_id={{ obj.id }}">{{ obj.name }}</a></td>
+                            <td>{{ obj.agent_type }}</td>
+                            <td>{{ obj.insertion_time }}</td>
+                            <td>{{ obj.is_scheduled }}</td>
+                            <td>{{ obj.schedule_time }}</td>
+                            <td><span title={{obj.status}} id="dot_status_{{obj.id}}" class="glyphicon dot-status-{{obj.status|lower}}"></span></td>
+                            <td>{{ obj.processing_start_time }}</td>
+                            <td>{{ obj.processing_end_time }}</td>
+	                    <td><a target="_blank" href="{{kibana_host}}/app/kibana#/discover?_g=(refreshInterval:('$$hashKey':'object:297',display:'10%20seconds',pause:!f,section:1,value:10000),time:(from:now-24h,mode:quick,to:now))&_a=(columns:!(_source),index:'optima-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'job_id:{{obj.id}}')),sort:!(_score,desc))"><button type="button" class="btn btn-sm btn-primary">view logs</button></a>
+
+
+        </tr>
+
+        {% endfor %}
+                              
+  </tbody>  
+                    
+                </table>
+              </div>
+            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/bs-animation.js' %}"></script>
+    <script src="{% static 'assets/js/aos.js' %}"></script>
+    <script src="{% static 'assets/js/jquery-1.12.4.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'assets/js/jobs.js' %}"></script>
+        <script src="{% static 'assets/js/toastr.min.js' %}"></script>
+    
+</body>
+{% include "footer.html" %}
+</html>
+
+
+

@@ -1,0 +1,363 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title> Workflow </title>
+<link href="{% static 'assets/css/jqueryscripttop.css' %}" rel="stylesheet" media="screen">
+<link href="{% static 'assets/css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet" media="screen">
+<link href="{% static 'assets/css/bootstrap-datetimepicker.css' %}" rel="stylesheet" media="screen">
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/new_workflow.css' %}">
+<link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/fonts/font-awesome.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/fonts/ionicons.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/fonts/material-icons.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/aos.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/Login-Center.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/MUSA_panel-table.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/MUSA_panel-table1.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/dataTables.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/flowchart1.css' %}">
+<link href="{% static 'assets/css/jquery.flowchart1.css' %}" rel="stylesheet" type="text/css">
+</head>
+<style>
+.navbar {
+    width: 1585px;}
+.validation {
+
+
+}
+
+.btn-color-start {
+    color: #ffffff;
+    background-color: #0044cc;
+    border-color: #46b8da;
+}
+.btn-color-success {
+    color: #ffffff;
+    background-color: #43ac6a;
+    border-color: #46b8da;
+}
+.btn-color-fail {
+    color: #ffffff;
+    background-color: rgb(240, 65, 36);
+    border-color: #46b8da;
+}
+.btn-danger{
+    height: 41px;}
+.btn-failure{
+    height: 41px;
+    background-color: rgba(0, 0, 0, 0.22);
+    width: 72px;
+    margin-top: 2px;
+}
+.flowchart-operator-inputs .flowchart-operator-connector-arrow {
+    left: -1px;
+    top: -11px;
+}
+.btn-draggable {
+    border-radius: 10px;
+    margin-top: 12px;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding: 8px 30px;
+    margin-bottom: 25px;
+}
+.btn-choices {
+    border-radius: 10px;
+    margin-top: 8px;
+    margin-bottom: 12px;
+    margin-right : 5px;
+    margin-left : 5px;
+    padding: 8px 12px;
+
+}
+.btn-start{
+background-color: rgba(0, 102, 135, 0.38);
+}
+.execute {
+
+        margin-top: 655px;
+    margin-left: 1442px;
+}
+.a-font {
+    color: #fbfbfb;}
+.mop-table {
+      margin-top: 30px;
+          margin-left: 40px;
+    background-color: #e6e6ff;
+    margin-bottom: -42px;
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 9px;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    width: 193px;
+    }
+.btn-execute{
+
+    display: inline-block;
+    margin-bottom: -467px;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: bottom;
+    -ms-touch-action: manipulation;
+    touch-action: auto;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 8px 12px;
+    font-size: 15px;
+    line-height: 1.4;
+    border-radius: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+        border-radius: 10px;
+            padding: 8px 12px;	    }
+.sizing {
+    background-color: #e6e6ff;
+    margin-top: -21px;
+    
+    width: 1585px;
+    }
+.btn-execute {
+margin-left: 100px;}
+.canvas {position: relative;
+
+    height: 645px;
+    width: 1355px;
+    margin-right: 607px;
+    margin-bottom: -654px;
+    margin-left: 230px;
+    margin-top: -549px;}
+</style>
+<body>
+{% include "menu.html" %}
+<div class="sizing" id="chart_container" >
+  <div class="flowchart-example-container" id="start-container" ></div>
+  <div class="buttons">
+  <a id="myBtn" class="btn-choices btn-sm btn3d btn-global a-font">global data</a>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content" style="overflow:scroll; width: 500px; height:400px; top: 140px; display: block;  border-radius: 15px">
+    <form class="bootstrap-form-with-validation" id="globalData-form">
+    <input type="hidden" name="global_data" >
+    <span class="close btn btn-close" style="    margin-top: -22px; margin-right: -25px;"><em class="glyphicon glyphicon-remove"></em></span>
+                                        <legend style="text-align:left; color:#008cba"><B> Workflow</B></legend>
+                                       <table>
+                                       <tr>
+                                       <td>
+                                      <label class="control-label" for="text-input">Workflow Name :</label></td>
+                                      <td><input  class="workflow" type="text" name="name" id="name"></td>
+                                        </tr>
+                                        <tr>
+                                        <div >
+                                            <td><label class="control-label" for="text-input">Description :</label></td>
+                                            <td align="center"><input  class="workflow" type="text" name="description" id="description"></td>
+                                        </div>
+                                        </tr>
+                                        </table>
+                                      <fieldset> 
+                                        <legend style="text-align: left; color: #008cba" ><B> Credentials</B></legend>
+                                        <input type="radio" name="useDeviceCredentials" id="workflow_use_device_credentials_1" />
+                                        <label> Use device credentials</label><br> 
+                                        <input type="radio" name="useDeviceCredentials" id="workflow_use_device_credentials_2" />
+                                        <label> Provide credentials</label><br>
+                                    <div id="workflow_use_device_credentials_2-div" class="pass" hidden="True">
+                                    			<table>
+                                    			<tr>
+                                    			<div class="form-group">
+                                                <td><label class="control-label" for="text-input">Login :</label></td>
+                                                <td align="center"><input class="workflow" type="text" name="login" id="login"></td>
+                                                </div>
+                                                </tr>
+                                                <tr>
+                                                <div class="form-group">
+                                                <td><label class="control-label" for="password-input">Password :</label></td>
+                                                <td align="center"><input class="workflow" type="password" name="password" id="password"></td>
+                                                </div>
+                                                </tr>
+                                                </table>
+                                        <div class="form-group">
+                                            <label class="control-label" for="password-input">Use Enable Password :</label> <br> 
+                                            <input type="radio" name="useEnablePassword" id="workflow_use_enable_password_1">
+                                            <label><B>Yes</B></label><br> 
+                                            <input type="radio" name="useEnablePassword" id="workflow_use_enable_password_2">
+                                            <label><B>No</B></label><br> 
+                                        </div>
+                                        <div id="workflow_use_enable_password_1-div" class="pass" hidden="True">
+                                        <table>
+                                        <tr>
+                                            <td><label class="control-label" for="text-input">password</label></td>
+                                            <td align="center"><input class="workflow" type="password" name="enablePassword" id="enable_password"></td>
+                                        </tr>
+                                        </table>
+                                        </div>
+                                    </div>   
+                                </fieldset>
+                                <br>
+                                        <fieldset> 
+                                        <legend style="text-align: left; color: #008cba"><B> Hosts</B></legend>
+                                        <input type="radio" name="hostsType" id="List" value="hostList"  />
+                                        <label>load a host file</label><br> 
+                                        <input type="radio" name="hostsType" id="Filter" value="hostFilter" />
+                                        <label>Choose hosts from an existing data base</label><br> 
+                                    <div id="workflow_hostChoice-1-div" class="form-group" hidden="True">
+                                                <label class="control-label" for="file-input">Host File :</label>
+                                                <input type="file" name="hostFile" id ="hostFile">
+                                    </div>
+                                     <div id="workflow_hostChoice-2-div" class="choosenDevice" hidden="True">
+                                      <!--
+                                      <table class="choice-list2">
+                                      <tr><td><select  class="workflow" id="choosen_category" style="height:50px; width:200px; text-align:center;" name="choosen_category" ><option value="0" selected>--choose from here--</option><option value="40" >localisation</option><br></br><option value="41">device class</option><br></br><option value="42">group</option></select></td><td><select class="workflow" id="choices" name="choices" style="height:50px; width:200px; text-align:center;" ><option>--choose a device class--</option><option>choice1</option><option>choice2</option><option>choice3</option></select></td><td><input type="text" name="filter" style="height:50px; width:200px; text-align:center;" /></td></tr>'
+                                      </table>
+                                     <a href="#" title="" class="add-choice2"><button type="button" class="btn btn-sm btn-primary btn-create" href="#">Add choice</button></a>
+                                    -->
+                               <table>
+                                      <tr>  
+                                      
+                                     
+                                     <td>
+                                     <Select name ="element" id="devices_workflow">
+                                     <option value="all" selected>all</option>
+  								     <option value="location">locations</option>
+  									 <option value="group">group</option>
+   									 <option value="deviceClass">device class</option>
+									 </Select>
+									 </td>
+									  <td>
+									  <div id="all" class="devices_workflow">
+                                     <Select name="value" id="value">
+                                     <option value="all" id="all" selected>all</option>
+                                     </Select>
+                                     </div>
+                                     </td>
+									 <td>
+									 <div id="location" class="devices_workflow" style="display:none"> 
+									 <Select name="value"  id="value">
+									<option value="all" selected>--choose from here--</option>
+									 
+									   {% for obj in localisation.locations %}                                       
+                                       <option value ="{{obj_id}}" id="{{obj.id}}_configurationParser">{{obj.name}}</option>
+                                       {% endfor %} 
+                                     </Select>
+                                     </div>
+                                      
+                                       
+									 <div id="deviceClass" class="devices_workflow" style="display:none"> 
+									 <Select name="value" id="value">
+                                     <option value="all" selected>--choose from here--</option>
+                                       {% for obj in deviceClass.deviceClasses %}
+                                       
+                                       <option value ="{{obj_id}}" id="{{obj.id}}_configurationParser">{{obj.name}}</option>
+                                       {% endfor %} 
+                                       </Select>
+                                       </div>
+									 
+									 
+									 <div id="group" class="devices_workflow" style="display:none">
+									 
+									 <Select name="value" id="value">
+									<option value="all" selected>--choose from here--</option>
+									   {% for obj in group.groups %}                                       
+                                       <option value ="{{obj_id}}" id="{{obj.id}}_configurationParser">{{obj.name}}</option>
+                                       {% endfor %} 
+                                     </Select>
+                                     
+									 </div>
+									 </td>
+									 <td>
+                                     <input type="text" name="device" id="device">
+									 </td>
+									 </tr>
+									 </table>
+                                </div>
+                                </fieldset>
+                                <br>
+                                <fieldset>
+                                <legend style="text-align: left; color: #008cba"><B> scheduling </B></legend>
+                               <div id="myRadioGroup">
+                                        <input type="radio" name="is_scheduled" id="workflow_is_scheduled_false"/>
+                                        <label>job not scheduled</label><br> 
+                                        <input type="radio" name="is_scheduled" id="workflow_is_scheduled_true"/>
+                                        <label>job scheduled</label><br> 
+                                    <div id="workflow_is_scheduled_true-div" hidden="True"> 
+                                        <div class="controls input-append date form_datetime"  data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                                           <input style="width:300px; height:50px; border-radius:8px;" type="text" value=""  name="schedule_time" id="schedule_time">
+                                            <span class="add-on"><i class="icon-remove"></i></span>
+                                            <span class="add-on"><i class="icon-th"></i></span>
+                                        </div> 
+                                    </div>
+                                    </fieldset>                                    
+                                    </form>
+  </div>
+</div>
+  <a class="delete_selected_button btn-choices btn-sm btn3d btn-danger"><em class="trash glyphicon-trash"></em></a>
+  </div>
+    <table class="mop-table">
+  <tr>
+  <td>
+  <div class="draggable_operators">
+  	<div class="draggable_operators_divs">
+  		<div class=" btn-draggable btn-color-start draggable_operator_start text-center">Start</div>
+  		<div class=" btn-draggable btn-info draggable_operator_sender text-center">Configuration Sender</div>
+  		<div class=" btn-draggable btn-info draggable_operator_postcheck">Differ Postcheck</div>
+  		<div class=" btn-draggable btn-info draggable_operator_precheck text-center">Differ Precheck</div>
+  		<div class="btn-draggable btn-info draggable_operator_parser text-center">Configuration Parser</div>
+  		<div class=" btn-draggable btn-info draggable_operator_loader text-center">Image Loader</div>
+  		<div class=" btn-draggable btn-info draggable_operator_eval text-center">Evaluation</div>
+
+    </div>
+  </div>
+  <div>
+  <label class="text-center"><B>Workflow Validation:</B></label><br> 
+                        <div class="material-switch">
+                             <input type="checkbox" onClick="validationValueWorkflow()" name="is_validated" value="false" id="someSwitchOptionPrimary">
+                            <label for="someSwitchOptionPrimary" class="label-primary"></label>  </div>             
+  
+  </div>
+  </td>
+  </tr>
+  </table>
+             
+
+ 
+  <div class="canvas">
+  
+  <div class="demo" id="start" ></div>
+
+  </div>
+  <input type="hidden" value="{{precheck_list}}" id= "precheck_list"/>
+<form method="POST"> {% csrf_token %}
+  <input type="hidden" name = "workflow_data" id="workflow_data" />
+  <input type="hidden" name="host_list" id ="hostList">
+  <div class="form-group pull-right">
+  </div>
+  <input class="btn-execute execute btn-primary" name="send_workflow" type ="submit" onclick ="getFlowchartData()" value="execute" /> 
+  </form>  
+  <script type="text/javascript" src ="{% static 'assets/js/jquery-1.12.4.js' %}"></script>
+  
+<script type="text/javascript" src ="{% static 'assets/js/jquery-ui.js' %}"></script>
+<script src="{% static 'assets/js/jquery.flowchart.js' %}"></script>
+<script type="text/javascript" src ="{% static 'assets/js/jquery.panzoom.min.js' %}"></script>
+<script type="text/javascript" src ="{% static 'assets/js/jquery.mousewheel.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/bootstrap-datetimepicker.js' %}" charset="UTF-8"></script>
+<script type="text/javascript" src="{% static 'assets/js/locales/bootstrap-datetimepicker.fr.js' %}" charset="UTF-8"></script>
+<script src="{% static 'assets/js/flowchart1.js' %}"></script>
+<script src="{% static 'assets/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery-ui.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/new_workflow.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/utils.js' %}"></script>
+<script type="text/javascript" src ="{% static 'assets/js/new_workflow_json.js' %}"></script>
+<script type="text/javascript" src ="{% static 'assets/js/main.js' %}"></script>
+</body>
+{% include "footer.html" %}
+</html>
+
+

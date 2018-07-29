@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Home</title>
+
+{% include "header.html" %}
+</head>
+{% include "menu.html" %}
+<hr>
+<hr>
+<body style="color:#008cba!important"> 
+    <div class="col-md-10 col-md-offset-1">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 login-item" data-aos="fade-up" data-aos-duration="100" data-bs-hover-animate="bounce">
+                <a href="/dashboards" data-bs-hover-animate="bounce"><div class="login-card" style="font-size:75px;"><i class="glyphicon glyphicon-dashboard" style="font-size:75px;" data-bs-hover-animate="bounce"></i></div></a>
+                <a href="/dashboards"><h3 class="text-center" style="color:rgb(254,254,254);background-color:#66686f; border-radius:5px; font-size:18px;">Dashboards </h3></a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 login-item" data-aos="fade-up" data-aos-duration="300">
+                <a href="/jobs"><div class="login-card" style="font-size:75px;"><i class="glyphicon glyphicon-briefcase" style="font-size:75px;"></i></div></a>
+                <a href="/jobs"><h3 class="text-center" style="color:rgb(254,254,254);background-color:#66686f; border-radius:5px; font-size:18px;">Jobs </h3></a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 login-item" data-aos="fade-up" data-aos-duration="500">
+                <a href="/jobs/job-edit"><div class="login-card" style="font-size:75px;"><i class="material-icons" style="font-size:75px;">format_indent_increase</i></div></a>
+                <a href="/jobs/job-edit"><h3 class="text-center" style="color:rgb(254,254,254);background-color:#66686f; border-radius:5px; font-size:18px;">Job Builder</h3></a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 login-item" data-aos="fade-up" data-aos-duration="700">
+                <a href="/devices"><div class="login-card" style="font-size:75px;"><a href="/devices"><i class="material-icons" style="font-size:75px;">router</i></a></div></a>
+                <a href="/devices"><h3 class="text-center" style="color:rgb(254,254,254);background-color:#66686f; border-radius:5px; font-size:18px;">Device Management</h3></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-10 col-md-offset-1">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 login-item" data-aos="fade-up" data-aos-duration="900">
+                <div class="login-card" style="font-size:75px;"><a href="/workflow"><i class="glyphicon glyphicon-random"></i></a></div>
+                <h3 class="text-center" style="color:rgb(254,254,254);background-color:#66686f; border-radius:5px; font-size:18px;">Workflows</h3>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 login-item" data-aos="fade-up" data-aos-duration="1200">
+                <div class="login-card" style="font-size:75px;"><a href="/workflow/workflow-edit/"><i class="fa fa-th-large"></a></i></div>
+                <h3 class="text-center" style="color:rgb(254,254,254);background-color:#66686f; border-radius:5px; font-size:18px;">Workflow Builder</h3>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 login-item" data-aos="fade-up" data-aos-duration="1400">
+                <div class="login-card" style="font-size:75px;"><a href="/notifications"><i class="material-icons" style="font-size:75px;">notifications_active</i></a></div>
+                <h3 class="text-center" style="color:rgb(254,254,254);background-color:#66686f; border-radius:5px; font-size:18px;">Notifications </h3>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 login-item" data-aos="fade-up" data-aos-duration="1600">
+                <a href="/reports"><div class="login-card" style="font-size:75px;"><i class="fa fa-bar-chart"></i></div></a>
+                <a href="/reports"><h3 class="text-center" style="color:rgb(254,254,254);background-color:#66686f; border-radius:5px; font-size:18px;">Job Reports</h3></a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 login-item" data-aos="fade-up" data-aos-duration="2000">
+                <div class="login-card" style="font-size:75px;"><a href="/triggers"><i class="fa fa-external-link-square"></i></a></div>
+                <h3 class="text-center" style="color:rgb(254,254,254);background-color:#66686f; border-radius:5px; font-size:18px;">Triggers </h3>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 login-item" data-aos="fade-up" data-aos-duration="1800">
+                <a target="_blank" href="{{kibana_host}}"><div class="login-card" style="font-size:75px;"><i class="fa fa-area-chart"></i></div></a>
+                <a target="_blank" href="{{kibana_host}}"><h3 class="text-center" style="color:rgb(254,254,254);background-color:#66686f; border-radius:5px; font-size:18px;"> Advanced Reports </h3></a>
+            </div>
+            
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 login-item" data-aos="fade-up" data-aos-duration="2200">
+                <div class="login-card" style="font-size:75px;"><a href="/workflowReports/"><i class="fa fa-pie-chart" style="font-size:75px;"></a></i></div>
+                <h3 class="text-center" style="color:rgb(254,254,254);background-color:#66686f; border-radius:5px; font-size:18px;">Workflow Reports </h3>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 login-item" data-aos="fade-up" data-aos-duration="2400">
+                <a href="/user"><div class="login-card" style="font-size:75px;"><i class="fa fa-user"></i></div></a>
+                <a href="/user"><h3 class="text-center" style="color:rgb(254,254,254);background-color:#66686f; border-radius:5px; font-size:18px;">User Management</h3></a>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+
+{% include "footer.html" %}
+
+
+</html>
+
+
+
+

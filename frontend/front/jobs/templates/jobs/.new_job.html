@@ -1,0 +1,734 @@
+
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Job</title>
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700">
+    <link rel="stylesheet" href="{% static 'assets/fonts/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/material-icons.css' %}">
+    <link rel="stylesheet" href="{% static "assets/css/aos.css" %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Login-Center.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/MUSA_panel-table.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/MUSA_panel-table1.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
+    <link href="{% static 'assets/css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet" media="screen">
+        <link href="{% static 'assets/css/new_job.css' %}" rel="stylesheet" media="screen">
+</head>
+<body>
+{% include "menu.html" %}
+    <ul class="nav nav-pills">
+        <li class="active"><a href="jobs.html">Jobs </a></li>
+        <li><a href="mop.html">MOP </a></li>
+    </ul>
+    <hr>
+    <div>
+        <div class="col-md-12 col-md-offset-0">
+            <div class="row">
+                <div class="col-md-12">
+                    <div data-aos="zoom-out-up" data-aos-duration="150">
+                        <ul class="nav nav-tabs">
+                            <li class="active" data-aos="fade-right"><a href="#tab-1" role="tab" data-toggle="tab">Differ precheck</a></li>
+                            <li data-aos="fade-right"><a href="#tab-2" role="tab" data-toggle="tab">Differ postcheck</a></li>
+                            <li data-aos="fade-right"><a href="#tab-3" role="tab" data-toggle="tab">Sender </a></li>
+                            <li data-aos="fade-right"><a href="#tab-4" role="tab" data-toggle="tab">Loader </a></li>
+                            <li data-aos="fade-right"><a href="#tab-5" role="tab" data-toggle="tab">Parser </a></li>
+                        </ul>
+                        <br></br>
+                        <div class="tab-content">
+                            <div class="tab-pane active" role="tabpanel" id="tab-1">
+                                <div class="col-lg-7 col-md-7 col-md-offset-2">
+                                    <form class="bootstrap-form-with-validation">
+                                        <h2 class="text-center" style="color: #0086b3"><B>Differ precheck</B></h2>
+                                        <br></br>
+                                        <fieldset > 
+                                        <legend style="text-align:left; color:#80aaff"><B> Job</B></legend>
+                                        
+                                        <div class="form-group">
+                                            <label class="control-label" for="text-input">Job Name :</label>
+                                            <input  class="form-control" type="text" name="text-input" id="text-input">
+                                        </div>
+                                        <div >
+                                            <label class="control-label" for="text-input">Description :</label>
+                                            <input  class="form-control" type="text" name="text-input" >
+                                        </div>
+                                        </fieldset> 
+                                        <br></br>
+                                            <fieldset> 
+                                        <legend style="text-align: left; color: #80aaff"><B> Credentials</B></legend>
+                                <div id="myRadioGroup">
+    
+                                        
+                                        <input type="radio" name="credentials" value="false"  />
+                                        <label> Use device credentials</label>
+                                        <input type="radio" name="credentials" value="true" />
+                                        <label> Provide credentials</label>
+    
+                                    <div id="credentials-div" class="pass" hidden="True">
+                                        <div class="form-group">
+                                                <label class="control-label" for="text-input">Login :</label>
+                                                <input class="form-control" type="text" name="text-input" id="text-input">
+                                        </div>
+                                        <div class="form-group">
+                                                <label class="control-label" for="password-input">Password :</label>
+                                                <input class="form-control" type="password" name="password-input" id="password-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="password-input">Use Enable Password :</label> <br></br>
+                                            <input type="radio" name="password" value="true">
+                                            <label><B>Yes</B></label>
+                                            <input type="radio" name="password" value="false">
+                                            <label><B>No</B></label>
+
+                                        </div>
+                                        <div id="password-div" class="pass" hidden="True">
+                                            <label class="control-label" for="text-input">password</label>
+                                            <input class="form-control" type="text" name="text-input" id="text-input">
+                                        </div>
+                                    </div>   
+                                </div>  
+                                </fieldset>
+                                        <br></br>
+
+                                        <fieldset> 
+                                        <legend style="text-align: left; color: #80aaff"><B> Hosts</B></legend>
+                                        <div id="myRadioGroup">
+                                        <input type="radio" name="host" id="hostFile" value="true"  />
+                                        <label>load a host file</label>
+                                        <input type="radio" name="host" id="hostList" value="false" />
+                                        <label>Choose hosts from an existing data base</label>
+                                        
+
+    
+                                    <div id="hostFile-div" class="form-group" hidden="True">
+                                                <label class="control-label" for="file-input">Host File :</label>
+                                                <input type="file" name="file-input" id="file-input">
+                                    </div>
+                                    <div id="hostList-div" class="form-group" hidden="True">
+                                        <table class="choice-list">
+                                                    <tr>
+                                                        <th style="text-align:center">choosen category</th><th style="text-align:center">choices</th><th style="text-align:center">filter</th>
+                                                        <br></br>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <select  class="form-control" id="choosen_category" style="height:50px; width:200px; text-align:center;" name="choosen_category" >
+                                                                <option value="0" selected>--choose from here--</option>
+                                                                <option value="20" >localisation</option><br></br>
+                                                                <option value="21">device class</option><br></br>
+                                                                <option value="22">group</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control" id="choices" name="choices" style="height:50px; width:200px; text-align:center;" >
+                                                                <option>--choose a device class--</option>
+                                                                <option>choice1</option>
+                                                                <option>choice2</option>
+                                                                <option>choice3</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="filter" style="height:50px; width:200px; text-align:center;" />
+                                                        </td>
+                                                    </tr>
+                                            </table>
+                                                    <br></br>
+                                                    <br></br>
+                                                    <a href="#" title="" class="add-choice"><button type="button" class="btn btn-sm btn-primary btn-create" href="#">Add choice</button></a>
+                                    </div>
+                                        
+                                </div>
+                                </fieldset>
+                                <br></br>
+                                        <fieldset> 
+                                        <legend style="text-align: left; color: #80aaff"><B> Parameters</B></legend>
+                                            <div class="form-group">
+                                            <label class="control-label" for="text-input">Command :</label>
+                                            <input class="form-control" type="text" name="text-input" id="text-input">
+                                        </div>
+                                        </fieldset>
+
+                                <fieldset> 
+                                <legend style="text-align: left; color: #80aaff"><B> scheduling </B></legend>
+                               <div id="myRadioGroup">
+                                        <input type="radio" name="schedule" value="false"  />
+                                        <label>job not scheduled</label>
+                                        <input type="radio" name="schedule" value="true" />
+                                        <label>job scheduled</label>
+    
+                                    <div id="schedule-div" hidden="True"> 
+                                        <div class="controls input-append date form_datetime" data-date="2017-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                                            <input size="40" type="text" value=""  readonly >
+                                            <span class="add-on"><i class="icon-remove"></i></span>
+                                            <span class="add-on"><i class="icon-th"></i></span>
+                                        </div> 
+                                    </div>
+                                    </fieldset>
+                                    
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <div class="form-group" >
+                                <label><B>You should validate your job before submitting it :</B></label><br></br>
+                                <label><B>Validate:</B></label>
+                                <input type="checkbox" name="validate">
+                                </div>
+                                <div class="form-group" >
+                                <button class="btn btn-primary" type="submit" style="margin-left: 80%;">Execute</button>
+                                </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="tab-pane" role="tabpanel" id="tab-2">
+                                <div class="col-lg-7 col-md-7 col-md-offset-2">
+                                    <form class="bootstrap-form-with-validation">
+                                        <h2 class="text-center" style="color: #0086b3"><B>Differ postcheck</B></h2>
+                                        <br></br>   
+                                        <fieldset > 
+                                    <legend style="text-align: left; color: #80aaff"><B> Job</B></legend>
+                                        <div class="form-group">
+                                            <label class="control-label" for="text-input">Job Name :</label>
+                                            <input  class="form-control" type="text" name="text-input" id="text-input">
+                                        </div>
+                                        <div >
+                                            <label class="control-label" for="text-input">Description :</label>
+                                            <input  class="form-control" type="text" name="text-input" >
+                                        </div>
+                                        </fieldset> 
+                                        <br></br>
+                                        <fieldset> 
+                                        <legend style="text-align: left; color: #80aaff"><B> Credentials</B></legend>
+                                <div id="myRadioGroup">
+                                        <input type="radio" name="postcheckCredentials" value="false"  />
+                                        <label> Use device credentials</label>
+                                        <input type="radio" name="postcheckCredentials" value="true" />
+                                        <label> Provide credentials</label>
+    
+                                    <div id="postcheckCredentials-div" class="pass" hidden="True">
+                                        <div class="form-group">
+                                                <label class="control-label" for="text-input">Login :</label>
+                                                <input class="form-control" type="text" name="text-input" id="text-input">
+                                        </div>
+                                        <div class="form-group">
+                                                <label class="control-label" for="password-input">Password :</label>
+                                                <input class="form-control" type="password" name="password-input" id="password-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="password-input">Use Enable Password :</label>
+                                            <input type="radio" name="enablePassword" value="true">
+                                            <label><B>Yes</B></label>
+                                            <input type="radio" name="enablePassword" value="false">
+                                            <label><B>No</B></label>
+                                        </div>
+                                        <div id="enablePassword-div" class="pass" hidden="True">
+                                            <label class="control-label" for="text-input">password</label>
+                                            <input class="form-control" type="text" name="text-input" id="text-input">
+                                        </div>
+                                    </div>
+                                </div>  
+                                        </fieldset>
+                                        <br></br>
+                                        <fieldset>
+                                            <label style="color: #0086b3"><B>choose a job :</B></label>
+                                            <select class="form-control" id="choices" name="choices" >
+                                                <option>--choose a job from your job's list--</option>
+                                                <option>job1</option>
+                                                <option>job2</option>
+                                                <option>job3</option>
+                                                </select>
+                                        </fieldset>
+                                        <br></br>
+                                        <fieldset> 
+                                <legend style="text-align: left; color: #80aaff"><B> scheduling </B></legend>
+                               <div id="myRadioGroup">
+                                        <input type="radio" name="postcheckSchedule" value="false"  />
+                                        <label>job not scheduled</label>
+                                        <input type="radio" name="postcheckSchedule" value="true" />
+                                        <label>job scheduled</label>
+    
+                                    <div id="postcheckSchedule-div" hidden="True"> 
+                                        <div class="controls input-append date form_datetime" data-date="2017-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                                            <input size="40" type="text" value=""  readonly >
+                                            <span class="add-on"><i class="icon-remove"></i></span>
+                                            <span class="add-on"><i class="icon-th"></i></span>
+                                        </div> 
+                                    </div>
+                                    </fieldset>
+
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <div class="form-group" >
+                                <label><B>You should validate your job before submitting it :</B></label><br></br>
+                                <label><B>Validate:</B></label>
+                                <input type="checkbox" name="validate">
+                                </div>
+                                <div class="form-group" >
+                                <button class="btn btn-primary" type="submit" style="margin-left: 80%;">Execute</button>
+                                </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="tab-pane" role="tabpanel" id="tab-3">
+                                <div class="col-lg-7 col-md-7 col-md-offset-2">
+                                    <form class="bootstrap-form-with-validation">
+                                        <h2 class="text-center" style="color: #0086b3"><B>Configuration Sender</B></h2>
+                                        <br></br>
+                                        <fieldset > 
+                                        <legend style="text-align: left; color: #80aaff"><B> Job</B></legend>
+                                        <div class="form-group">
+                                            <label class="control-label" for="text-input">Job Name :</label>
+                                            <input  class="form-control" type="text" name="text-input" id="text-input">
+                                        </div>
+                                        <div >
+                                            <label class="control-label" for="text-input">Description :</label>
+                                            <input  class="form-control" type="text" name="text-input" >
+                                        </div>
+                                        </fieldset> 
+                                        <br></br>
+                                        <fieldset> 
+                                        <legend style="text-align: left; color: #80aaff"><B> Credentials</B></legend>
+                                <div id="myRadioGroup">
+                                        <input type="radio" name="senderCredentials" value="false"  />
+                                        <label> Use device credentials</label>
+                                        <input type="radio" name="senderCredentials" value="true" />
+                                        <label> Provide credentials</label>
+    
+                                    <div id="senderCredentials-div" class="pass" hidden="True">
+                                        <div class="form-group">
+                                                <label class="control-label" for="text-input">Login :</label>
+                                                <input class="form-control" type="text" name="text-input" id="text-input">
+                                        </div>
+                                        <div class="form-group">
+                                                <label class="control-label" for="password-input">Password :</label>
+                                                <input class="form-control" type="password" name="password-input" id="password-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="password-input">Use Enable Password :</label>
+                                            <input type="radio" name="senderPassword" value="true">
+                                            <label><B>Yes</B></label>
+                                            <input type="radio" name="senderPassword" value="false">
+                                            <label><B>No</B></label>
+                                        </div>
+                                        <div id="senderPassword-div" class="pass" hidden="True">
+                                            <label class="control-label" for="text-input">password</label>
+                                            <input class="form-control" type="text" name="text-input" id="text-input">
+                                        </div>
+                                    </div>
+                                </div>  
+                                        </fieldset>
+                                        <br></br>
+                                        
+                                        <fieldset>
+                                        <legend style="text-align: left; color: #80aaff"><B> Hosts</B></legend>
+                                        <div id="myRadioGroup">
+                                        <input type="radio" name="senderHost" id="hostFile" value="1"  />
+                                        <label>load a hosts and commands file</label><br></br>
+                                        <input type="radio" name="senderHost" id="hostList" value="2" />
+                                        <label>Choose hosts from an existing data base and write your commands</label><br></br>
+                                        <input type="radio" name="senderHost" id="hostList" value="3" />
+                                        <label>load a hosts file and write your command</label><br></br>
+                                            <div id="choice1-div" class="form-group" hidden="True">
+                                                <label class="control-label" for="file-input">Hosts and commands file</label>
+                                                <input type="file" name="file-input" id="file-input">
+                                            </div>
+                                            <div id="choice3-div" class="form-group" hidden="True">
+                                                <label class="control-label" for="file-input">Host File :</label>
+                                                <input type="file" name="file-input" id="file-input"><br></br>
+                                                <label>Command</label>
+                                                <input type="text" name="text-input">
+                                            </div>
+                                            <br></br>
+                                            <div id="choice2-div" class="form-group" hidden="True">
+                                                <div>
+                                                <table class="choice-list1">
+                                                    <tr>
+                                                        <th style="text-align:center">choosen category</th><th style="text-align:center">choices</th><th style="text-align:center">filter</th>
+                                                        <br></br>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <select  class="form-control" id="choosen_category1" style="height:50px; width:200px; text-align:center;" name="choosen_category1" >
+                                                                <option value="0" selected>--choose from here--</option>
+                                                                <option value="30" >localisation</option>
+                                                                <option value="31">device class</option>
+                                                                <option value="32">group</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control" id="choices1" name="choices1" style="height:50px; width:200px; text-align:center;" >
+                                                                <option>--choose a device class--</option>
+                                                                <option>choice1</option>
+                                                                <option>choice2</option>
+                                                                <option>choice3</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="filter1" style="height:50px; width:200px; text-align:center;">
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                    <br></br>
+                                                    <a href="#" title="" class="add-choice1"><button type="button" class="btn btn-sm btn-primary btn-create" href="#">Add choice</button></a>
+                                                </div>
+                                                <br></br>
+                                                <div>
+                                                    <label>Command</label>
+                                                    <input type="text" name="text-input">
+                                                </div>
+                                            </div>
+                                        </fieldset>
+        
+                                        <br></br>
+                                        <fieldset> 
+                                <legend style="text-align: left; color: #80aaff"><B> scheduling </B></legend>
+                               <div id="myRadioGroup">
+                                        <input type="radio" name="senderSchedule" value="false"  />
+                                        <label>job not scheduled</label>
+                                        <input type="radio" name="senderSchedule" value="true" />
+                                        <label>job scheduled</label>
+    
+                                    <div id="senderSchedule-div" hidden="True"> 
+                                        <div class="controls input-append date form_datetime" data-date="2017-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                                            <input size="40" type="text" value=""  readonly >
+                                            <span class="add-on"><i class="icon-remove"></i></span>
+                                            <span class="add-on"><i class="icon-th"></i></span>
+                                        </div> 
+                                    </div>
+                                    </fieldset>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <div class="form-group" >
+                                <label><B>You should validate your job before submitting it :</B></label><br></br>
+                                <label><B>Validate:</B></label>
+                                <input type="checkbox" name="validate">
+                                </div>
+                                <div class="form-group" >
+                                <button class="btn btn-primary" type="submit" style="margin-left: 80%;">Execute</button>
+                                </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="tab-pane" role="tabpanel" id="tab-4">
+                                <div class="col-lg-7 col-md-7 col-md-offset-2">
+                                    <form class="bootstrap-form-with-validation">
+                                        <h2 class="text-center" style="color: #0086b3"><B>Image Loader</B></h2>
+                                        <br></br>
+                                        <fieldset > 
+                                        <legend style="text-align: left; color: #80aaff"><B> Job</B></legend>
+                                        <div class="form-group">
+                                            <label class="control-label" for="text-input">Job Name :</label>
+                                            <input  class="form-control" type="text" name="text-input" id="text-input">
+                                        </div>
+                                        <div >
+                                            <label class="control-label" for="text-input">Description :</label>
+                                            <input  class="form-control" type="text" name="text-input" >
+                                        </div>
+                                        </fieldset> 
+                                        <br></br>
+                                        <fieldset> 
+                                        <legend style="text-align: left; color: #80aaff"><B> Credentials</B></legend>
+                                <div id="myRadioGroup">
+    
+                                        
+                                        <input type="radio" name="loaderCredentials" value="false"  />
+                                        <label> Use device credentials</label>
+                                        <input type="radio" name="loaderCredentials" value="true" />
+                                        <label> Provide credentials</label>
+    
+                                    <div id="loaderCredentials-div" class="pass" hidden="True">
+                                        <div class="form-group">
+                                                <label class="control-label" for="text-input">Login :</label>
+                                                <input class="form-control" type="text" name="text-input" id="text-input">
+                                        </div>
+                                        <div class="form-group">
+                                                <label class="control-label" for="password-input">Password :</label>
+                                                <input class="form-control" type="password" name="password-input" id="password-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="password-input">Use Enable Password :</label> <br></br>
+                                            <input type="radio" name="loaderPassword" value="true">
+                                            <label><B>Yes</B></label>
+                                            <input type="radio" name="loaderPassword" value="false">
+                                            <label><B>No</B></label>
+                                        </div>
+                                        <div id="loaderPassword-div" class="pass" hidden="True">
+                                            <label class="control-label" for="text-input">password</label>
+                                            <input class="form-control" type="text" name="text-input" id="text-input">
+                                        </div>
+                                    </div>   
+                                </div>  
+                                </fieldset>
+                                        <br></br>
+
+                                        <fieldset> 
+                                        <legend style="text-align: left; color: #80aaff"><B> Hosts</B></legend>
+                                        <div id="myRadioGroup">
+                                        <input type="radio" name="loaderHost" id="hostFile1" value="true"  />
+                                        <label>load a host file</label>
+                                        <input type="radio" name="loaderHost" id="hostList1" value="false" />
+                                        <label>Choose hosts from an existing data base</label>
+                                        
+
+    
+                                    <div id="hostFile1-div" class="form-group" hidden="True">
+                                                <label class="control-label" for="file-input">Host File :</label>
+                                                <input type="file" name="file-input" id="file-input">
+                                    </div>
+                                    <div id="hostList1-div" class="form-group" hidden="True">
+                                        <table class="choice-list">
+                                                    <tr>
+                                                        <th style="text-align:center">choosen category</th><th style="text-align:center">choices</th><th style="text-align:center">filter</th>
+                                                        <br></br>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <select  class="form-control" id="choosen_category" style="height:50px; width:200px; text-align:center;" name="choosen_category" >
+                                                                <option value="0" selected>--choose from here--</option>
+                                                                <option value="20" >localisation</option><br></br>
+                                                                <option value="21">device class</option><br></br>
+                                                                <option value="22">group</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control" id="choices" name="choices" style="height:50px; width:200px; text-align:center;" >
+                                                                <option>--choose a device class--</option>
+                                                                <option>choice1</option>
+                                                                <option>choice2</option>
+                                                                <option>choice3</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="filter" style="height:50px; width:200px; text-align:center;" />
+                                                        </td>
+                                                    </tr>
+                                            </table>
+                                                    <br></br>
+                                                    <br></br>
+                                                    <a href="#" title="" class="add-choice"><button type="button" class="btn btn-sm btn-primary btn-create" href="#">Add choice</button></a>
+                                    </div>
+                                        
+                                </div>
+                                </fieldset>
+                                <br></br>
+                                        <fieldset> 
+                                        <legend style="text-align: left; color: #80aaff"><B> Parameters</B></legend>
+                                        <div class="form-group">
+                                            <label class="control-label" for="text-input">Storage Device :</label>
+                                            <input class="form-control" type="text" name="text-input" value="Flash" id="text-input"><br>
+                                            <label class="control-label" for="text-input">FTP Server Name :</label>
+                                            <input class="form-control" type="text" name="text-input" value="FTP Server" id="text-input"><br>
+                                            <label class="control-label" for="text-input">FTP Port :</label>
+                                            <input class="form-control" type="text" name="text-input" value="21" id="text-input"><br>
+                                            <label class="control-label" for="text-input">FTP User :</label>
+                                            <input class="form-control" type="text" name="text-input" value="FTP User" id="text-input"><br>
+                                            <label class="control-label" for="text-input">FTP Password :</label>
+                                            <input class="form-control" type="text" name="text-input" value="FTP Password" id="text-input"><br>
+                                            <label class="control-label" for="text-input">Image File Path :</label>
+                                            <input class="form-control" type="text" name="text-input" value="path/to/image.bin" id="text-input"><br>
+                                        </div>
+                                        </fieldset> 
+
+                                <fieldset> 
+                                <legend style="text-align: left; color: #80aaff"><B> scheduling </B></legend>
+                               <div id="myRadioGroup">
+                                        <input type="radio" name="loaderSchedule" value="false"  />
+                                        <label>job not scheduled</label>
+                                        <input type="radio" name="loaderSchedule" value="true" />
+                                        <label>job scheduled</label>
+    
+                                    <div id="loaderSchedule-div" hidden="True"> 
+                                        <div class="controls input-append date form_datetime" data-date="2017-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                                            <input size="40" type="text" value=""  readonly >
+                                            <span class="add-on"><i class="icon-remove"></i></span>
+                                            <span class="add-on"><i class="icon-th"></i></span>
+                                        </div> 
+                                    </div>
+                                    </fieldset>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <div class="form-group" >
+                                <label><B>You should validate your job before submitting it :</B></label><br></br>
+                                <label><B>Validate:</B></label>
+                                <input type="checkbox" name="validate">
+                                </div>
+                                <div class="form-group" >
+                                <button class="btn btn-primary" type="submit" style="margin-left: 80%;">Execute</button>
+                                </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="tab-pane" role="tabpanel" id="tab-5">
+                                <div class="col-lg-7 col-md-7 col-md-offset-2">
+                                    <form class="bootstrap-form-with-validation">
+                                        <h2 class="text-center" style="color: #0086b3"><B>Configuration Parser</B></h2>
+                                        <br></br>
+                                        <fieldset > 
+                                        <legend style="text-align:left; color: #80aaff"><B> Job</B></legend>
+                                        <div class="form-group">
+                                            <label class="control-label" for="text-input">Job Name :</label>
+                                            <input  class="form-control" type="text" name="text-input" id="text-input">
+                                        </div>
+                                        <div >
+                                            <label class="control-label" for="text-input">Description :</label>
+                                            <input  class="form-control" type="text" name="text-input" >
+                                        </div>
+                                        </fieldset> 
+                                        <br></br>
+
+                                        <fieldset> 
+                                        <legend style="text-align: left; color: #80aaff"><B> Credentials</B></legend>
+                                <div id="myRadioGroup">
+    
+                                        
+                                        <input type="radio" name="parserCredentials" value="false"  />
+                                        <label> Use device credentials</label>
+                                        <input type="radio" name="parserCredentials" value="true" />
+                                        <label> Provide credentials</label>
+    
+                                    <div id="parserCredentials-div" class="pass" hidden="True">
+                                        <div class="form-group">
+                                                <label class="control-label" for="text-input">Login :</label>
+                                                <input class="form-control" type="text" name="text-input" id="text-input">
+                                        </div>
+                                        <div class="form-group">
+                                                <label class="control-label" for="password-input">Password :</label>
+                                                <input class="form-control" type="password" name="password-input" id="password-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="password-input">Use Enable Password :</label> <br></br>
+                                            <input type="radio" name="parserPassword" value="true">
+                                            <label><B>Yes</B></label>
+                                            <input type="radio" name="parserPassword" value="false">
+                                            <label><B>No</B></label>
+                                        </div>
+                                        <div id="parserPassword-div" class="pass" hidden="True">
+                                            <label class="control-label" for="text-input">password</label>
+                                            <input class="form-control" type="text" name="text-input" id="text-input">
+                                        </div>
+                                    </div>   
+                                </div>  
+                                </fieldset>
+                                        <br></br>
+
+                                        <fieldset> 
+                                        <legend style="text-align: left; color: #80aaff"><B> Hosts</B></legend>
+                                        <div id="myRadioGroup">
+                                        <input type="radio" name="parserHost" id="hostFile2" value="true"  />
+                                        <label>load a host file</label>
+                                        <input type="radio" name="parserHost" id="hostList2" value="false" />
+                                        <label>Choose hosts from an existing data base</label>
+                                        
+
+    
+                                    <div id="hostFile2-div" class="form-group" hidden="True">
+                                                <label class="control-label" for="file-input">Host File :</label>
+                                                <input type="file" name="file-input" id="file-input">
+                                    </div>
+                                    <div id="hostList2-div" class="form-group" hidden="True">
+                                        <table class="choice-list">
+                                                    <tr>
+                                                        <th style="text-align:center">choosen category</th><th style="text-align:center">choices</th><th style="text-align:center">filter</th>
+                                                        <br></br>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <select  class="form-control" id="choosen_category" style="height:50px; width:200px; text-align:center;" name="choosen_category" >
+                                                                <option value="0" selected>--choose from here--</option>
+                                                                <option value="20" >localisation</option><br></br>
+                                                                <option value="21">device class</option><br></br>
+                                                                <option value="22">group</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control" id="choices" name="choices" style="height:50px; width:200px; text-align:center;" >
+                                                                <option>--choose a device class--</option>
+                                                                <option>choice1</option>
+                                                                <option>choice2</option>
+                                                                <option>choice3</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="filter" style="height:50px; width:200px; text-align:center;" />
+                                                        </td>
+                                                    </tr>
+                                            </table>
+                                                    <br></br>
+                                                    <br></br>
+                                                    <a href="#" title="" class="add-choice"><button type="button" class="btn btn-sm btn-primary btn-create" href="#">Add choice</button></a>
+                                    </div>
+                                        
+                                </div>
+                                </fieldset>
+                                <br></br>
+                                        <fieldset> 
+                                        <legend style="text-align: left; color: #80aaff"><B> Parameters</B></legend>
+                                            <div class="form-group">
+                                            <label class="control-label" for="file-input">Strict Matching : </label>
+                                            <select class="form-control">
+                                                <option value="True">Yes</option>
+                                                <option value="False">No</option>
+                                            </select>
+                                            <br></br>
+                                            <label class="control-label" for="file-input">Keys </label>
+                                            <input class="form-control" type="text" name="text-input" id="text-input"> <br></br>
+                                            <label class="control-label" for="text-input">Remote Command</label>
+                                            <input class="form-control" type="text" name="text-input" value="run show" id="text-input">
+                                            </div>
+                                        </fieldset> 
+
+                                <fieldset> 
+                                <legend style="text-align: left; color: #80aaff"><B> scheduling </B></legend>
+                               <div id="myRadioGroup">
+                                        <input type="radio" name="parserSchedule" value="false"  />
+                                        <label>job not scheduled</label>
+                                        <input type="radio" name="parserSchedule" value="true" />
+                                        <label>job scheduled</label>
+    
+                                    <div id="parserSchedule-div" hidden="True"> 
+                                        <div class="controls input-append date form_datetime" data-date="2017-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                                            <input size="40" type="text" value=""  readonly >
+                                            <span class="add-on"><i class="icon-remove"></i></span>
+                                            <span class="add-on"><i class="icon-th"></i></span>
+                                        </div> 
+                                    </div>
+                                    </fieldset>
+
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <div class="form-group" >
+                                <label><B>You should validate your job before submitting it :</B></label><br></br>
+                                <label><B>Validate:</B></label>
+                                <input type="checkbox" name="validate">
+                                </div>
+                                <div class="form-group" >
+                                <button class="btn btn-primary" type="submit" style="margin-left: 80%;">Execute</button>
+                                </div>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/bs-animation.js' %}"></script>
+    <script src="{% static "assets/js/aos.js" %}"></script>
+    <script type="text/javascript" src="{% static 'assets/jquery/jquery-1.8.3.min.js' %}" charset="UTF-8"></script>
+    <script type="text/javascript" src="{% static 'assets/bootstrap/js/bootstrap/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/bootstrap-datetimepicker.js' %}" charset="UTF-8"></script>
+    <script type="text/javascript" src="{% static 'assets/js/locales/bootstrap-datetimepicker.fr.js' %}" charset="UTF-8"></script>
+    <script type="text/javascript" src="{% static 'assets/js/new_job.js' %}"></script>
+</body>
+</html>

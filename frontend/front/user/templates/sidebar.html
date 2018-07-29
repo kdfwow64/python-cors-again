@@ -1,0 +1,8 @@
+<div>
+    <ul class="nav nav-pills">
+        <li{% if active == "user" %} class="active"{% endif %}><a href="{% url 'user:user' %}">Users</a></li>
+        <li{% if active == "user_group" %} class="active"{% endif %}><a href="{% url 'user:user_group' %}">User Groups</a>
+        <li{% if active == "role" %} class="active"{% endif %}><a href="{% url 'user:role' %}">Roles</a>
+    </ul>
+    <hr>
+</div>

@@ -1,0 +1,36 @@
+
+                <div class="panel-body">
+                <table class="table table-striped table-bordered table-list display" id="example" cellspacing="0" width="100%">
+                  <thead>
+                    <tr>
+                    	<th>choose a job </th>
+                    	<th hidden="true">Id</th>
+                    	<th>Name</th>
+                    	<th>Agent Type</th>
+                        <th>Description</th>
+                        <th>Insertion Time</th>
+                        <th>Scheduled</th>
+                        <th>Schedule Time</th>
+                    </tr> 
+                  </thead>
+                  <tbody>
+            
+
+                           {% for obj in jsondata.jobs %}
+                          <tr>
+                            <td><input type="radio" name="job"></td>
+                            <td hidden="true">{{ obj.id }}</td>
+                            <td>{{ obj.name }}</td>
+                            <td>{{ obj.agent_type }}</td>
+                            <td>{{ obj.description }}</td>
+                            <td>{{ obj.insertion_time }}</td>
+                            <td>{{ obj.is_scheduled }}</td>
+                            <td>{{ obj.schedule_time }}</td>
+                          </tr>
+
+                        {% endfor %}
+                              
+  </tbody>  
+                    
+                </table>
+              </div>

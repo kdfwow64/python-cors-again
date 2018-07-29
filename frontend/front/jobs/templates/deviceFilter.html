@@ -1,0 +1,30 @@
+<div id="localisation" class="devices" style="display:none"> 
+	<Select id="localisation">
+    	<option value="1" selected>--choose from here--</option>
+        {% for obj in localisation.locations %}                                       
+        <option id="{{obj.id}}" value="localisationFilter">{{obj.name}}</option>
+        {% endfor %} 
+	</Select>
+    <label>filter</label>
+    <input type="text" name="localisationFilter">
+</div>
+<div id="deviceClass" class="devices" style="display:none"> 
+	<Select id="deviceclass">
+    	<option value="2" selected>--choose from here--</option>
+    	{% for obj in deviceClass.deviceClasses %}
+    	<option id="{{obj.id}}">{{obj.name}}</option>
+        {% endfor %} 
+    </Select>
+    <label>filter</label>
+    <input type="text" name="deviceClassFilter">
+</div>
+<div id="group" class="devices" style="display:none">
+	<Select id="group">
+    	<option value="3" selected>--choose from here--</option>
+        {% for obj in group.groups %}                                       
+        <option id="{{obj.id}}">{{obj.name}}</option>
+        {% endfor %} 
+	</Select>
+    <label>filter</label>
+    <input type="text" name="groupFilter">
+</div>

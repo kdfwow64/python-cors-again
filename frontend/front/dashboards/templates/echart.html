@@ -1,0 +1,135 @@
+<script type="text/javascript">
+
+$(document).ready(function() {
+	var theme = {
+			  color: [
+				  '#cc0000', '#768481', '#34495e', '#0059ff',
+				  '#29c745', '#29c74f5', '#759c6a', '#bfd3b7'
+			  ],
+
+			  title: {
+				  itemGap: 8,
+				  textStyle: {
+					  fontWeight: 'normal',
+					  color: '#408829'
+				  }
+			  },
+
+			  dataRange: {
+				  color: ['#1f610a', '#97b58d']
+			  },
+
+			  toolbox: {
+				  color: ['#408829', '#408829', '#408829', '#408829']
+			  },
+
+			  tooltip: {
+				  backgroundColor: 'rgba(0,0,0,0.5)',
+				  axisPointer: {
+					  type: 'line',
+					  lineStyle: {
+						  color: '#408829',
+						  type: 'dashed'
+					  },
+					  crossStyle: {
+						  color: '#408829'
+					  },
+					  shadowStyle: {
+						  color: 'rgba(200,200,200,0.3)'
+					  }
+				  }
+			  },};
+
+var echartBar = echarts.init(document.getElementById('{{name}}'), theme);
+
+echartBar.setOption(window.{{name}});
+})
+
+var {{name}} = {
+	      title: {
+	        text: '{{description}}'
+	        // subtext: 'Graph demonstrate the usage of the jobs'
+	      },
+	      tooltip: {
+	        trigger: 'axis'
+	      },
+	      legend: {
+	        data: ['jobs', 'tasks']
+	      },
+	      toolbox: {
+	        show : true,
+	        feature : {
+	            mark : {show: false, title: 'Mark', title : {
+	                                                            mark : 'Mark',
+	                                                            markUndo : 'Undo',
+	                                                            markClear : 'Clear'
+	                                                        },
+	                                                      },
+	            magicType : {show: true, type: ['line', 'bar'], title : {
+	                                                                      line : 'Line',
+	                                                                      bar : 'Bar',
+	                                                                      stack : 'Stack',
+	                                                                      tiled : 'Tiled',
+	                                                                      force: 'Force',
+	                                                                      chord: 'Chord',
+	                                                                      pie: 'Pie',
+	                                                                      funnel: 'Funnel'
+	                                                                  },
+	                        },
+	            restore : {show: true, title: 'Refresh'},
+	            saveAsImage : {show: true, title: 'Save as Image'}
+	        }
+	      },
+	      calculable: false,
+	          xAxis: [{
+		        type: 'category',
+		        data: [{% for name in values.names %}'{{name}}',{% endfor %}]
+		      }],
+		      yAxis: [{
+		        type: 'value'
+		      }],
+		      series: [
+		      {% for serie in values.series %}
+		        {
+			        
+		    	    name: '{{serie.name}}',
+			        type: 'bar',
+			        data: [{% for point in serie.data %} {{point}}, {% endfor %}],
+			        
+			       
+			      },{% endfor %}  
+			      ]
+		    };
+		    
+
+</script>
+
+
+<div class="col-md-8 col-sm-8 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>{{description}}</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+                    <div id="{{name}}" style="height:350px;"></div>
+
+                  </div>
+                </div>
+              </div>

@@ -1,0 +1,81 @@
+<head>
+    <title>Create User</title>
+
+{% include "header.html" %}
+</head>
+<body>
+{% include "menu.html" %}  
+
+
+
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.left-color {
+    background-color: #f4f3f5;
+}
+.right-color {
+    background-color: white;
+}
+</style>
+
+
+
+
+  
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-center text-info">Create User</h2></div>
+            <br />
+            <h6 class="text-center" style="color: red">{{message}}</h6>
+        <div class="col-md-6 col-md-offset-3 col-sm-6 col-xs-12 site-form">
+            <form id="my-form" method="POST"> {% csrf_token %}
+            <table>
+                    <tr>
+                    <td class="left-color"><label class="control-label col col-xs-6 text-left">Username</label></td>
+                    <td class="right-color"><input class="right-color form-control" type="text" name="username" required="" ></td>
+                    </tr>
+                    <tr>
+                    <td class="left-color"><label class="control-label col col-xs-6 text-left">Password</label></td>
+                    <td class="right-color"><input class="right-color form-control" type="password" name="password" required="" ></td>
+                    </tr>
+                    <tr>
+                    <td class="left-color"><label class="control-label col col-xs-6 text-left">Confirm Password</label></td>
+                    <td class="right-color"><input class="right-color form-control" type="password" name="confirm_password" required="" ></td>
+                    </tr>
+                    <tr>
+                    <td class="left-color"><label class="control-label col col-xs-6 text-left">Phone Number</label></td>
+                    <td class="right-color"><input class="right-color form-control" type="tel" name="phone_number" required="" ></td>
+                    </tr>
+                    <tr>
+                    <td class="left-color"><label class="control-label col col-xs-6 text-left">Email Address</label></td>
+                    <td class="right-color"><input class="right-color form-control" type="text" name="email" required="" ></td>
+                    </tr>
+                    <tr>
+                    <td class="left-color"><label class="control-label col col-xs-6 text-left">Group</label></td>
+                    <td class="right-color"><select class="right-color form-control" name="group">
+                        <option value="admin">Admin</option>
+                        <option value="read_only">Read Only</option>
+                        <option value="read_write">Read and Write </option>
+                    </select></td>
+                    </tr>
+                </table> <br />
+                <button class="btn btn-primary btn-lg text-right" type="submit" name="signup" value="true">SEND </button>
+            </form>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</body>
+
+
+{% include "footer.html" %}

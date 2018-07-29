@@ -1,0 +1,13 @@
+.btn{border-radius:10px;}
+
+    *{-webkit-border-radius:0;border-radius:0;font-family:'Open Sans';}
+    .trash{
+    position: relative;
+    top: 5px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;}
+    .login-card{max-width:350px;padding:40px;margin:0 auto;text-align:center;}.login-card .profile-img-card{width:96px;height:96px;margin:0 auto 10px;display:block;border-radius:50%}.login-card .profile-name-card{font-size:10px;font-weight:700;text-align:center;margin:10px 0 0;min-height:1em}.glyphicon.glyphicon-star{font-size:0}.login-item{border: 1px groove;border-radius:10px;}

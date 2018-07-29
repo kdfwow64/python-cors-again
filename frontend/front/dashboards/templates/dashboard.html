@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  {% include "header.html" %}
+  
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Dashboards</title>
+
+    <!-- Bootstrap -->
+    <!-- Font Awesome -->
+    <link href="/static/assets/dashboards/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="/static/assets/dashboards/vendors/nprogress/nprogress.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="/static/assets/dashboards/build/css/custom.css" rel="stylesheet">
+
+    
+  </head>
+  <script>
+  
+  function refresh() {
+	  {% for element_id in dashboardElements %}
+	  var xmlHttp = new XMLHttpRequest();
+		xmlHttp.open( "GET", "/dashboards/dashboardElements?id={{element_id.id}}" ); // false for synchronous request
+		xmlHttp.send( null );
+	  $.ajax({
+		
+		url: '/dashboards/dashboardElements?id={{element_id.id}}',
+	    success: function(data) {
+	      $('#{{element_id.id}}_id').html(data);
+	    }
+	  });
+	  {% endfor %}
+  }
+	  
+  
+  $(document).ready(function() {
+      window.setInterval(function(){
+    	  refresh()
+    	  },10000);
+	});	  
+
+  </script>
+  
+{% include "menu.html" %}    
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="#" class="site_title"><span>Dashboards</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info -->
+            
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>General</h3>
+                <ul class="nav side-menu">
+                  <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li class="current-page"><a href="#">Dashboard</a></li>
+         
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- /sidebar menu -->
+
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+            <nav>
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+
+              </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <!-- top tiles -->
+          <div class="row tile_count">
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-briefcase"></i> Total Jobs</span>
+             {% for obj in statistics.data %} <div class="count">{{ obj.jobs|default:"0" }}</div> {% endfor %}
+              <!-- <span class="count_bottom"><i class="green">% </i> From last Week</span> -->
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-tag"></i> Total Tasks</span>
+              {% for obj in statistics.data %} <div class="count">{{ obj.tasks|default:"0" }}</div> {% endfor %}
+              <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>% </i> From last Week</span> -->
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-server"></i> Total Devices</span>
+              {% for obj in statistics.data %} <div class="count">{{ obj.devices|default:"0" }}</div> {% endfor %}
+              <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>% </i> From last Week</span> -->
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-random"></i> Total Workflows</span>
+              {% for obj in statistics.data %}<div class="count">{{ obj.workflows|default:"0" }}</div>{% endfor %}
+              <!-- <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>% </i> From last Week</span> -->
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-bars"></i> Average Duration</span>
+              {% for obj in statistics.data %}<div class="count">{{ obj.average_process_duration|default:"0" }}s</div> {% endfor %}
+              <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>% </i> From last Week</span> -->
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-thumbs-up"></i> Success Rate</span>
+             {% for obj in statistics.data %} <div class="count">{{ obj.task_success_kpi|default:"0" }}%</div>{% endfor %}
+              <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>% </i> From last Week</span> -->
+            </div>
+          </div>
+          <!-- /top tiles -->
+          <div class="">
+            <div class="clearfix"></div>
+
+            <div class="row">
+              {% for element in dashboardElements %}
+              <div id="{{ element.id }}_id">
+              {{ element.html }}
+              </div>
+              {% endfor %}
+              
+
+            </div>
+
+          </div>
+
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            Copyright 2017 Advanced Technology Group. All Rights Reserved.
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <!-- Bootstrap -->
+    <!-- FastClick -->
+    <script src="/static/assets/dashboards/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="/static/assets/dashboards/vendors/nprogress/nprogress.js"></script>
+    <!-- ECharts -->
+    <script src="/static/assets/dashboards/vendors/echarts/dist/echarts.min.js"></script>
+    <script src="/static/assets/dashboards/vendors/echarts/map/js/world.js"></script>
+    <!-- morris.js -->
+    <script src="/static/assets/dashboards/vendors/raphael/raphael.min.js"></script>
+    <script src="/static/assets/dashboards/vendors/morris.js/morris.min.js"></script>
+
+    <!-- bootstrap-progressbar -->
+    <script src="/static/assets/dashboards/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+
+    <!-- gauge.js -->
+    <script src="/static/assets/dashboards/vendors/gauge.js/dist/gauge.min.js"></script>
+
+    <!-- Chart.js -->
+    <script src="/static/assets/dashboards/vendors/Chart.js/dist/Chart.min.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="/static/assets/dashboards/build/js/custom.js"></script>
+
+  </body>
+</html>

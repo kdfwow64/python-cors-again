@@ -1,0 +1,96 @@
+2018-06-08 19:52:55,708 [MainThread  ] [DEBUG]  Processing device eldnmc01rwa01.corp.dir.ameren.com.
+2018-06-08 19:52:55,710 [MainThread  ] [DEBUG]  Processing device 10.179.0.21.
+2018-06-08 19:52:58,334 [MainThread  ] [WARNI]  Could not connect to host eldnmc01rwa01.corp.dir.ameren.com using SSH. Error: Authentication failed.
+2018-06-08 19:52:58,612 [MainThread  ] [WARNI]  Could not connect to host 10.179.0.21 using SSH. Error: Authentication failed.
+2018-06-08 19:52:59,342 [MainThread  ] [DEBUG]  Connected to host eldnmc01rwa01.corp.dir.ameren.com using Telnet.
+2018-06-08 19:52:59,618 [MainThread  ] [DEBUG]  Connected to host 10.179.0.21 using Telnet.
+2018-06-08 19:53:37,345 [MainThread  ] [ERROR]  Could not get full configuration for eldnmc01rwa01.corp.dir.ameren.com
+2018-06-08 19:53:37,346 [MainThread  ] [ERROR]  Empty configuration for device eldnmc01rwa01.corp.dir.ameren.com
+2018-06-08 19:53:37,347 [MainThread  ] [ERROR]  Setting task status to FAILED
+2018-06-08 19:53:37,348 [MainThread  ] [INFO ]  Setting task status to FAILED
+2018-06-08 19:53:37,491 [MainThread  ] [ERROR]  Could not get full configuration for 10.179.0.21
+2018-06-08 19:53:37,492 [MainThread  ] [ERROR]  Empty configuration for device 10.179.0.21
+2018-06-08 19:53:37,492 [MainThread  ] [ERROR]  Setting task status to FAILED
+2018-06-08 19:53:37,493 [MainThread  ] [INFO ]  Setting task status to FAILED
+2018-06-08 19:57:05,361 [MainThread  ] [DEBUG]  Processing device 10.179.0.21.
+2018-06-08 19:57:06,223 [MainThread  ] [DEBUG]  Processing device eldnmc01rwa01.corp.dir.ameren.com.
+2018-06-08 19:57:06,262 [MainThread  ] [DEBUG]  Connected to host 10.179.0.21 using SSH.
+2018-06-08 19:57:07,112 [MainThread  ] [DEBUG]  Connected to host eldnmc01rwa01.corp.dir.ameren.com using SSH.
+2018-06-08 19:57:12,527 [MainThread  ] [DEBUG]  Configuration took 3.5 to be read on host 10.179.0.21
+2018-06-08 19:57:12,529 [MainThread  ] [DEBUG]  Configuration for device 10.179.0.21: 
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch-L2-Lab(config)#
+labhostname(config)#
+2018-06-08 19:57:12,530 [MainThread  ] [INFO ]  Extracted and parsed configuration for device 10.179.0.21.
+2018-06-08 19:57:12,531 [MainThread  ] [INFO ]  Setting task status to SUCCESSFUL
+2018-06-08 19:57:12,602 [MainThread  ] [INFO ]  Finished processing device 10.179.0.21.
+2018-06-08 19:57:13,132 [MainThread  ] [DEBUG]  Configuration took 3.5 to be read on host eldnmc01rwa01.corp.dir.ameren.com
+2018-06-08 19:57:13,134 [MainThread  ] [DEBUG]  Configuration for device eldnmc01rwa01.corp.dir.ameren.com: 
+Enter configuration commands, one per line.  End with CNTL/Z.
+lab-router(config)#
+labhostname(config)#
+2018-06-08 19:57:13,135 [MainThread  ] [INFO ]  Extracted and parsed configuration for device eldnmc01rwa01.corp.dir.ameren.com.
+2018-06-08 19:57:13,135 [MainThread  ] [INFO ]  Setting task status to SUCCESSFUL
+2018-06-08 19:57:13,194 [MainThread  ] [INFO ]  Finished processing device eldnmc01rwa01.corp.dir.ameren.com.
+2018-06-08 20:29:30,522 [MainThread  ] [DEBUG]  Processing device 10.179.0.100.
+2018-06-08 20:29:31,125 [MainThread  ] [DEBUG]  Connected to host 10.179.0.100 using SSH.
+2018-06-08 20:29:31,276 [MainThread  ] [DEBUG]  Processing device 10.179.0.21.
+2018-06-08 20:29:32,189 [MainThread  ] [DEBUG]  Connected to host 10.179.0.21 using SSH.
+2018-06-08 20:29:37,140 [MainThread  ] [DEBUG]  Configuration took 3.5 to be read on host 10.179.0.100
+2018-06-08 20:29:37,141 [MainThread  ] [DEBUG]  Configuration for device 10.179.0.100: 
+conf t 
+Enter configuration commands, one per line.  End with CNTL/Z.
+labhostname(config)#int vlan 50
+                         ^
+% Invalid input detected at '^' marker.
+
+labhostname(config)#shutdown
+% Incomplete command.
+
+labhostname(config)#end
+labhostname#
+2018-06-08 20:29:37,142 [MainThread  ] [INFO ]  Extracted and parsed configuration for device 10.179.0.100.
+2018-06-08 20:29:37,143 [MainThread  ] [INFO ]  Setting task status to SUCCESSFUL
+2018-06-08 20:29:37,177 [MainThread  ] [INFO ]  Finished processing device 10.179.0.100.
+2018-06-08 20:29:38,212 [MainThread  ] [DEBUG]  Configuration took 3.5 to be read on host 10.179.0.21
+2018-06-08 20:29:38,213 [MainThread  ] [DEBUG]  Configuration for device 10.179.0.21: 
+conf t 
+Enter configuration commands, one per line.  End with CNTL/Z.
+labhostname(config)#int vlan 50
+labhostname(config-if)#shutdown
+labhostname(config-if)#end
+labhostname#
+2018-06-08 20:29:38,214 [MainThread  ] [INFO ]  Extracted and parsed configuration for device 10.179.0.21.
+2018-06-08 20:29:38,215 [MainThread  ] [INFO ]  Setting task status to SUCCESSFUL
+2018-06-08 20:29:38,262 [MainThread  ] [INFO ]  Finished processing device 10.179.0.21.
+2018-07-02 20:10:39,602 [MainThread  ] [DEBUG]  Processing device 10.179.0.20.
+2018-07-02 20:10:39,603 [MainThread  ] [DEBUG]  Processing device 10.179.0.21.
+2018-07-02 20:10:40,472 [MainThread  ] [DEBUG]  Connected to host 10.179.0.21 using SSH.
+2018-07-02 20:10:41,130 [MainThread  ] [DEBUG]  Connected to host 10.179.0.20 using SSH.
+2018-07-02 20:10:46,495 [MainThread  ] [DEBUG]  Configuration took 3.5 to be read on host 10.179.0.21
+2018-07-02 20:10:46,497 [MainThread  ] [DEBUG]  Configuration for device 10.179.0.21: 
+conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+labhostname(config)#int FastEthernet0
+labhostname(config-if)#no sh 
+labhostname(config-if)#exit
+labhostname(config)#
+2018-07-02 20:10:46,497 [MainThread  ] [INFO ]  Extracted and parsed configuration for device 10.179.0.21.
+2018-07-02 20:10:46,498 [MainThread  ] [INFO ]  Setting task status to SUCCESSFUL
+2018-07-02 20:10:46,531 [MainThread  ] [INFO ]  Finished processing device 10.179.0.21.
+2018-07-02 20:10:47,146 [MainThread  ] [DEBUG]  Configuration took 3.5 to be read on host 10.179.0.20
+2018-07-02 20:10:47,147 [MainThread  ] [DEBUG]  Configuration for device 10.179.0.20: 
+conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch-L3-Lab(config)#int FastEthernet0
+                           ^
+% Invalid input detected at '^' marker.
+
+Switch-L3-Lab(config)#no sh 
+% Incomplete command.
+
+Switch-L3-Lab(config)#exit
+Switch-L3-Lab#
+2018-07-02 20:10:47,148 [MainThread  ] [INFO ]  Extracted and parsed configuration for device 10.179.0.20.
+2018-07-02 20:10:47,149 [MainThread  ] [INFO ]  Setting task status to SUCCESSFUL
+2018-07-02 20:10:47,181 [MainThread  ] [INFO ]  Finished processing device 10.179.0.20.
